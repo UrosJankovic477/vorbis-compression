@@ -1,0 +1,359 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "vorbis-compression"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"link_directories",
+			"target_link_libraries",
+			"add_compile_options",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt",
+			"build/_deps/vorbis-src/lib/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 61,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 59,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 62,
+				"parent" : 0
+			},
+			{
+				"file" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 112,
+				"parent" : 4
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 60,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 58,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-Wall"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-O3"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-mfpmath=sse"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-msse"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-msse2"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-pthread"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 7,
+					"path" : "/home/uros/dev/vorbis-compression/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/usr/include/gtk-4.0"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/usr/include/pango-1.0"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/usr/include/glib-2.0"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/usr/lib/x86_64-linux-gnu/glib-2.0/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/usr/include/harfbuzz"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/usr/include/freetype2"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/usr/include/libpng16"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/usr/include/libmount"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/usr/include/blkid"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/usr/include/fribidi"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/usr/include/cairo"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/usr/include/pixman-1"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/usr/include/gdk-pixbuf-2.0"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/usr/include/webp"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/usr/include/graphene-1.0"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/usr/lib/x86_64-linux-gnu/graphene-1.0/include"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/uros/dev/vorbis-compression/build/_deps/ogg-src/include"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/uros/dev/vorbis-compression/build/_deps/ogg-build/include"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/uros/dev/vorbis-compression/build/_deps/vorbis-src/include"
+				}
+			],
+			"language" : "C",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 3,
+			"id" : "ogg::@4e5ed7d02827854e35f8"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "vorbis::@692b0ee2b61df6760d20"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "vorbisenc::@692b0ee2b61df6760d20"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "vorbisfile::@692b0ee2b61df6760d20"
+		}
+	],
+	"id" : "vorbis-compression::@6890427a1f51a3e7e1df",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-L\"/home/uros/dev/vorbis-compression/src/*\"",
+				"role" : "libraryPath"
+			},
+			{
+				"fragment" : "-Wl,-rpath,\"/home/uros/dev/vorbis-compression/src/*\"",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "_deps/ogg-build/libogg.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "_deps/vorbis-build/lib/libvorbis.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "_deps/vorbis-build/lib/libvorbisfile.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "_deps/vorbis-build/lib/libvorbisenc.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "-lgtk-4",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "-lpangocairo-1.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "-lpango-1.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "-lharfbuzz",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "-lgdk_pixbuf-2.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "-lcairo-gobject",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "-lcairo",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "-lvulkan",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "-lgraphene-1.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "-lgio-2.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "-lgobject-2.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "-lglib-2.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "_deps/vorbis-build/lib/libvorbis.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "_deps/ogg-build/libogg.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lm",
+				"role" : "libraries"
+			}
+		],
+		"language" : "C"
+	},
+	"name" : "vorbis-compression",
+	"nameOnDisk" : "vorbis-compression",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/main.c",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}
