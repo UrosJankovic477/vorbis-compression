@@ -1,20 +1,25 @@
-#include <vorbis/codec.h>
-#include <gtk-4.0/gtk/gtk.h>
+#include "encoding/encoding.h"
+#include "logging/logging.h"
 
-static void on_activate(GtkApplication *app) {
-  GtkWidget *window = gtk_application_window_new(app);
-  GtkWidget *button = gtk_button_new_with_label("Test title");
-  g_signal_connect_swapped(button, "clicked", G_CALLBACK(gtk_window_close), window);
-  gtk_window_set_child(GTK_WINDOW(window), button);
-  gtk_window_present(GTK_WINDOW(window));
-}
-
-int main(int argc, char const **argv)
+int main(int argc, char const *argv[])
 {
-    GtkApplication *app = gtk_application_new(
-        "com.example.GtkApplication", 
-        G_APPLICATION_DEFAULT_FLAGS
-    );
-    g_signal_connect(app, "activate", G_CALLBACK(on_activate), NULL);
-    return g_application_run(G_APPLICATION(app), argc, argv);
+    int status;
+
+    status = VC_Encode((VC_EncodeOptions)
+    {
+        .desired_quality = 0.1,
+        .sInFilePath = "../M1F1-int16WE-AFsp.wav",
+        .sOutFilePath = "../M1F1-int16WE-AFsp.ogg",
+    });
+
+    if (status < 0)
+    {
+        VC_ReadLogQueue();
+        exit(1);
+    }
+    
+    VC_PushLogMessage("File encoded successfully.", VC_LOG_INFO);
+    VC_ReadLogQueue();
+    
+    return 0;
 }
