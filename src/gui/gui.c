@@ -4,8 +4,11 @@
 #include "../encoding/encoding.h"
 
 static VC_EncodeOptions vc_encodingOptions = { 0 };
-static GtkTextBuffer *inputFileTextBuffer = NULL;
-static GtkTextBuffer *outputFileTextBuffer = NULL;
+static GtkWidget *inputFileLabel = NULL;
+static GtkWidget *outputFileLabel = NULL;
+static GtkWidget *compressionRateLabel = NULL;
+static size_t inputFileSize = 0;
+static size_t outputFileSize = 0;
 
 void VC_FileReadFinished(GObject *inFile, GAsyncResult *res, gpointer data)
 {
@@ -19,7 +22,16 @@ void VC_FileReadFinished(GObject *inFile, GAsyncResult *res, gpointer data)
     }
     
     const char *inFilePath = g_file_get_path(G_FILE(inFile));
-    gtk_text_buffer_set_text(inputFileTextBuffer, inFilePath, strlen(inFilePath));
+    gtk_label_set_label(GTK_LABEL(inputFileLabel), inFilePath);
+    GFileInfo *inFileInfo = g_file_input_stream_query_info(inFileStream, G_FILE_ATTRIBUTE_STANDARD_SIZE, NULL, &error);
+    if (error != NULL)
+    {
+        VC_PushLogMessage(error->message, VC_LOG_WARNING);
+        g_error_free(error);
+        return;
+    }
+
+    inputFileSize = g_file_info_get_size(inFileInfo);
     
     vc_encodingOptions.pInFileStream = inFileStream;
 }
@@ -70,9 +82,26 @@ void VC_OnOutputFileDialogFinished(GObject *fileDialog, GAsyncResult *res, gpoin
         VC_ReadLogQueue();
         return;
     }
+
+    GFileInfo *outFileInfo = g_file_output_stream_query_info(outFileStream, G_FILE_ATTRIBUTE_STANDARD_SIZE, NULL, &error);
+    if (error != NULL)
+    {
+        VC_PushLogMessage(error->message, VC_LOG_WARNING);
+        g_error_free(error);
+        return;
+    }
     
+    outputFileSize = g_file_info_get_size(outFileInfo);
+
     const char *outFilePath = g_file_get_path(G_FILE(outFile));
-    gtk_text_buffer_set_text(outputFileTextBuffer, outFilePath, strlen(outFilePath));
+    gtk_label_set_label(GTK_LABEL(outputFileLabel), outFilePath);
+    if (inputFileSize != 0)
+    {
+        char compressionRatioString[26] = { 0 };
+        snprintf(compressionRatioString, 26, "Compression rate: %3.2f%%", (float)(outputFileSize) / (float)(inputFileSize) * 100);
+        gtk_label_set_label(GTK_LABEL(compressionRateLabel), compressionRatioString);
+    }
+    
 
     VC_PushLogMessage("File encoded successfully.", VC_LOG_INFO);
     VC_ReadLogQueue();
@@ -101,18 +130,17 @@ void VC_OnActivate(GtkApplication *app)
 
     gtk_file_dialog_set_default_filter(inputFileDialog, fileFilter);
 
-    GtkWidget *inputFileText = gtk_text_view_new_with_buffer(inputFileTextBuffer);
-    GtkWidget *outputFileText = gtk_text_view_new_with_buffer(outputFileTextBuffer);
-
-    gtk_text_view_set_editable(GTK_TEXT_VIEW(inputFileText), false);
-    gtk_text_view_set_editable(GTK_TEXT_VIEW(outputFileText), false);
+    inputFileLabel = gtk_label_new("(no file selected)");
+    outputFileLabel = gtk_label_new("");
+    compressionRateLabel = gtk_label_new("");
 
     GtkWidget *grid = gtk_grid_new();
     gtk_window_set_child(GTK_WINDOW(window), grid);
     gtk_grid_attach(GTK_GRID(grid), chooseFileButton, 0, 0, 1, 1);
-    gtk_grid_attach(GTK_GRID(grid), convertButton, 0, 1, 1, 1);
-    gtk_grid_attach(GTK_GRID(grid), inputFileText, 0, 2, 3, 1);
-    gtk_grid_attach(GTK_GRID(grid), outputFileText, 0, 3, 3, 1);
+    gtk_grid_attach(GTK_GRID(grid), convertButton, 0, 2, 1, 1);
+    gtk_grid_attach(GTK_GRID(grid), inputFileLabel, 0, 1, 3, 1);
+    gtk_grid_attach(GTK_GRID(grid), outputFileLabel, 0, 3, 3, 1);
+    gtk_grid_attach(GTK_GRID(grid), compressionRateLabel, 0, 4, 3, 1);
     g_signal_connect_swapped(chooseFileButton, "clicked", G_CALLBACK(VC_OnChooseFileClicked), inputFileDialog);
     g_signal_connect_swapped(convertButton, "clicked", G_CALLBACK(VC_OnConvertClicked), outputFileDialog);
     gtk_window_present(GTK_WINDOW(window));
@@ -121,8 +149,8 @@ void VC_OnActivate(GtkApplication *app)
 int VC_RunApp(int argc, char** argv)
 {
     GtkTextTagTable *textTagTable = gtk_text_tag_table_new();
-    inputFileTextBuffer = gtk_text_buffer_new(textTagTable);
-    outputFileTextBuffer = gtk_text_buffer_new(textTagTable);
+    inputFileLabel = gtk_text_buffer_new(textTagTable);
+    outputFileLabel = gtk_text_buffer_new(textTagTable);
 
     GtkApplication *app = gtk_application_new("vc.app", G_APPLICATION_DEFAULT_FLAGS);
     g_signal_connect(app, "activate", G_CALLBACK(VC_OnActivate), NULL);
