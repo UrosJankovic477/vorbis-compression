@@ -3,12 +3,24 @@
 #include "../encoding/options.h"
 #include "../encoding/encoding.h"
 
-static VC_EncodeOptions vc_encodingOptions = { 0 };
-static GtkWidget *inputFileLabel = NULL;
-static GtkWidget *outputFileLabel = NULL;
-static GtkWidget *compressionRateLabel = NULL;
-static size_t inputFileSize = 0;
-static size_t outputFileSize = 0;
+static VC_EncodeOptions     vc_encodingOptions      = { 0 };
+static GtkWidget            *inputFileLabel         = NULL;
+static GtkWidget            *outputFileLabel        = NULL;
+static GtkWidget            *compressionRateLabel   = NULL;
+static GtkMediaStream       *mediaStream            = NULL;
+static GtkMediaControls     *mediaControlls         = NULL;
+static size_t               inputFileSize           = 0;
+static size_t               outputFileSize          = 0;
+
+void VC_PlayAudio()
+{
+
+}
+
+void VC_PauseAudio()
+{
+
+}
 
 void VC_FileReadFinished(GObject *inFile, GAsyncResult *res, gpointer data)
 {
@@ -75,6 +87,9 @@ void VC_OnOutputFileDialogFinished(GObject *fileDialog, GAsyncResult *res, gpoin
         return;
     }
 
+    mediaStream = gtk_media_file_new_for_file(outFile);
+    gtk_media_controls_set_media_stream(mediaControlls, mediaStream);
+
     vc_encodingOptions.pOutFileStream = outFileStream;
     int status = VC_Encode(vc_encodingOptions);
     if (status < 0)
@@ -100,6 +115,7 @@ void VC_OnOutputFileDialogFinished(GObject *fileDialog, GAsyncResult *res, gpoin
         char compressionRatioString[26] = { 0 };
         snprintf(compressionRatioString, 26, "Compression rate: %3.2f%%", (float)(outputFileSize) / (float)(inputFileSize) * 100);
         gtk_label_set_label(GTK_LABEL(compressionRateLabel), compressionRatioString);
+        gtk_widget_set_visible(GTK_WIDGET(outputFileLabel), true);
     }
     
 
@@ -134,13 +150,19 @@ void VC_OnActivate(GtkApplication *app)
     outputFileLabel = gtk_label_new("");
     compressionRateLabel = gtk_label_new("");
 
+    mediaControlls = gtk_media_file_new();
+    mediaControlls = gtk_media_controls_new(NULL);
+
+    gtk_widget_set_visible(GTK_WIDGET(outputFileLabel), false);
+
     GtkWidget *grid = gtk_grid_new();
     gtk_window_set_child(GTK_WINDOW(window), grid);
     gtk_grid_attach(GTK_GRID(grid), chooseFileButton, 0, 0, 1, 1);
     gtk_grid_attach(GTK_GRID(grid), convertButton, 0, 2, 1, 1);
     gtk_grid_attach(GTK_GRID(grid), inputFileLabel, 0, 1, 3, 1);
     gtk_grid_attach(GTK_GRID(grid), outputFileLabel, 0, 3, 3, 1);
-    gtk_grid_attach(GTK_GRID(grid), compressionRateLabel, 0, 4, 3, 1);
+    gtk_grid_attach(GTK_GRID(grid), compressionRateLabel, 0, 4, 1, 1);
+    gtk_grid_attach(GTK_GRID(grid), mediaControlls, 0, 5, 1, 1);
     g_signal_connect_swapped(chooseFileButton, "clicked", G_CALLBACK(VC_OnChooseFileClicked), inputFileDialog);
     g_signal_connect_swapped(convertButton, "clicked", G_CALLBACK(VC_OnConvertClicked), outputFileDialog);
     gtk_window_present(GTK_WINDOW(window));
@@ -149,8 +171,6 @@ void VC_OnActivate(GtkApplication *app)
 int VC_RunApp(int argc, char** argv)
 {
     GtkTextTagTable *textTagTable = gtk_text_tag_table_new();
-    inputFileLabel = gtk_text_buffer_new(textTagTable);
-    outputFileLabel = gtk_text_buffer_new(textTagTable);
 
     GtkApplication *app = gtk_application_new("vc.app", G_APPLICATION_DEFAULT_FLAGS);
     g_signal_connect(app, "activate", G_CALLBACK(VC_OnActivate), NULL);
