@@ -11,6 +11,6 @@ typedef struct
     GFileOutputStream *pOutFileStream;
     float fDesiredQuality;
 
-} VC_EncodeOptions;
+} VcEncodeOptions;
 
 #endif // VC_OPTIONS_H

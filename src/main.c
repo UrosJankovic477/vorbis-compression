@@ -4,5 +4,5 @@
 
 int main(int argc, char const *argv[])
 {
-    return VC_RunApp(argc, argv);
+    return VcRunApp(argc, argv);
 }

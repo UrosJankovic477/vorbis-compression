@@ -3,6 +3,6 @@
 
 #include <gtk-4.0/gtk/gtk.h>
 
-int VC_RunApp(int argc, char **argv);
+int VcRunApp(int argc, char **argv);
 
 #endif // VC_GUI_H

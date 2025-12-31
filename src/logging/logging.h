@@ -12,18 +12,18 @@ typedef enum
     VC_LOG_ERROR,
     VC_LOG_NONE = 255
 
-} VC_LogMessagePriority;
+} VcLogMessagePriority;
 
-void VC_PushLogMessage(const char *message, VC_LogMessagePriority priority);
-void VC_ReadLogQueue();
+void VcPushLogMessage(const char *message, VcLogMessagePriority priority);
+void VcReadLogQueue();
 
-typedef void (*VC_LoggerCallback)(const char *message, VC_LogMessagePriority priority);
+typedef void (*VC_LoggerCallback)(const char *message, VcLogMessagePriority priority);
 
-void VC_WriteToLogFile(const char *message, VC_LogMessagePriority priority);
-void VC_WriteToStderr(const char *message, VC_LogMessagePriority priority);
+void VcWriteToLogFile(const char *message, VcLogMessagePriority priority);
+void VcWriteToStderr(const char *message, VcLogMessagePriority priority);
 
-void VC_SetLoggerCallback(VC_LoggerCallback cb);
+void VcSetLoggerCallback(VC_LoggerCallback cb);
 
-void VC_SetLogPriority(VC_LogMessagePriority priority);
+void VcSetLogPriority(VcLogMessagePriority priority);
 
 #endif // VC_LOGGING_H

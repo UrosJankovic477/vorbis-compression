@@ -57,27 +57,27 @@ int VC_ReadHeader()
     g_seekable_seek(G_SEEKABLE(vc_ctx.pInfile), 20, G_SEEK_SET, NULL, &error);
     if (error != NULL)
     {
-        VC_PushLogMessage(error->message, VC_LOG_ERROR);
+        VcPushLogMessage(error->message, VC_LOG_ERROR);
         return -1;
     }
     size_t nBytes = g_input_stream_read(G_INPUT_STREAM(vc_ctx.pInfile), &vc_ctx.common, 16, NULL, &error);
     if (error != NULL || nBytes < 16)
     {
-        VC_PushLogMessage(error->message, VC_LOG_ERROR);
+        VcPushLogMessage(error->message, VC_LOG_ERROR);
         return -1;
     }
 
     g_seekable_seek(G_SEEKABLE(vc_ctx.pInfile), 40, G_SEEK_SET, NULL, &error);
     if (error != NULL)
     {
-        VC_PushLogMessage(error->message, VC_LOG_ERROR);
+        VcPushLogMessage(error->message, VC_LOG_ERROR);
         return -1;
     }
 
     nBytes = g_input_stream_read(G_INPUT_STREAM(vc_ctx.pInfile), &vc_ctx.nDataSize, 4, NULL, &error);
     if (nBytes < 4)
     {
-        VC_PushLogMessage(error->message, VC_LOG_ERROR);
+        VcPushLogMessage(error->message, VC_LOG_ERROR);
         return -1;
     }
 
@@ -187,7 +187,7 @@ void VC_WriteBuffer(size_t n_bytes)
     }
 }
 
-int VC_Encode(VC_EncodeOptions options)
+int VcEncode(VcEncodeOptions options)
 {
     vc_ctx.pInfile = options.pInFileStream;
     vc_ctx.pOutfile = options.pOutFileStream;
@@ -200,7 +200,7 @@ int VC_Encode(VC_EncodeOptions options)
 
     if (status < 0)
     {
-        VC_PushLogMessage("Failed to parse header", VC_LOG_ERROR);
+        VcPushLogMessage("Failed to parse header", VC_LOG_ERROR);
         return -1;
     }
 
@@ -208,7 +208,7 @@ int VC_Encode(VC_EncodeOptions options)
     status = ogg_stream_init(&vc_ctx.stream, rand());
     if (status < 0)
     {
-        VC_PushLogMessage("Couldn't initialize vorbis stream", VC_LOG_ERROR);
+        VcPushLogMessage("Couldn't initialize vorbis stream", VC_LOG_ERROR);
         return -1;
     }
 
@@ -216,14 +216,14 @@ int VC_Encode(VC_EncodeOptions options)
     status = vorbis_encode_init_vbr(&vc_ctx.vi, vc_ctx.common.nChannels, vc_ctx.common.nSamplesPerSec, options.fDesiredQuality);
     if (status < 0)
     {
-        VC_PushLogMessage("Couldn't initialize vorbis encoding engine", VC_LOG_ERROR);
+        VcPushLogMessage("Couldn't initialize vorbis encoding engine", VC_LOG_ERROR);
         return -1;
     }
 
     status = vorbis_analysis_init(&vc_ctx.dsp, &vc_ctx.vi);
     if (status < 0)
     {
-        VC_PushLogMessage("Couldn't initialize vorbis analysis engine", VC_LOG_ERROR);
+        VcPushLogMessage("Couldn't initialize vorbis analysis engine", VC_LOG_ERROR);
         return -1;
     }
     
@@ -232,14 +232,14 @@ int VC_Encode(VC_EncodeOptions options)
     status = vorbis_analysis_headerout(&vc_ctx.dsp, &vc_ctx.comment, &header_packet, &comment_packet, &code_packet);
     if (status < 0)
     {
-        VC_PushLogMessage("Failed to write header", VC_LOG_ERROR);
+        VcPushLogMessage("Failed to write header", VC_LOG_ERROR);
         return -1;
     }
 
     status = vorbis_block_init(&vc_ctx.dsp, &vc_ctx.block);
     if (status < 0)
     {
-        VC_PushLogMessage("Couldn't initialize vorbis block structure", VC_LOG_ERROR);
+        VcPushLogMessage("Couldn't initialize vorbis block structure", VC_LOG_ERROR);
         return -1;
     }
 
@@ -258,7 +258,7 @@ int VC_Encode(VC_EncodeOptions options)
         g_output_stream_write(G_OUTPUT_STREAM(vc_ctx.pOutfile), vc_ctx.page.body, vc_ctx.page.body_len, NULL, &error);
         if (error != NULL)
         {
-            VC_PushLogMessage(error->message, VC_LOG_ERROR);
+            VcPushLogMessage(error->message, VC_LOG_ERROR);
             return -1;
         }
     }
@@ -270,7 +270,7 @@ int VC_Encode(VC_EncodeOptions options)
         size_t n_bytes =  g_input_stream_read(G_INPUT_STREAM(vc_ctx.pInfile), vc_read_buffer, VC_RB_SIZE, NULL, &error);
         if (error != NULL)
         {
-            VC_PushLogMessage(error->message, VC_LOG_ERROR);
+            VcPushLogMessage(error->message, VC_LOG_ERROR);
             return -1;
         }
 
@@ -290,7 +290,7 @@ int VC_Encode(VC_EncodeOptions options)
             {
                 char message[VC_LOG_MSG_MAXLEN] = { 0 };
                 snprintf(message, VC_LOG_MSG_MAXLEN, "Analysis error: %d", status);
-                VC_PushLogMessage(message, VC_LOG_ERROR);
+                VcPushLogMessage(message, VC_LOG_ERROR);
                 return -1;
             }
             status = vorbis_bitrate_addblock(&vc_ctx.block);
@@ -298,7 +298,7 @@ int VC_Encode(VC_EncodeOptions options)
             {
                 char message[VC_LOG_MSG_MAXLEN] = { 0 };
                 snprintf(message, VC_LOG_MSG_MAXLEN, "Couldn't add block: %d", status);
-                VC_PushLogMessage(message, VC_LOG_ERROR);
+                VcPushLogMessage(message, VC_LOG_ERROR);
                 return -1;
             }
 
@@ -309,7 +309,7 @@ int VC_Encode(VC_EncodeOptions options)
                 {
                     char message[VC_LOG_MSG_MAXLEN] = { 0 };
                     snprintf(message, VC_LOG_MSG_MAXLEN, "Failed to read packet from stream: %d", status);
-                    VC_PushLogMessage(message, VC_LOG_ERROR);
+                    VcPushLogMessage(message, VC_LOG_ERROR);
                     return -1;
                 }
                 while (!eos)
@@ -324,7 +324,7 @@ int VC_Encode(VC_EncodeOptions options)
                     g_output_stream_write(G_OUTPUT_STREAM(vc_ctx.pOutfile), vc_ctx.page.body, vc_ctx.page.body_len, NULL, &error);
                     if (error != NULL)
                     {
-                        VC_PushLogMessage(error->message, VC_LOG_ERROR);
+                        VcPushLogMessage(error->message, VC_LOG_ERROR);
                         return -1;
                     }
 
@@ -338,7 +338,7 @@ int VC_Encode(VC_EncodeOptions options)
             {
                 char message[VC_LOG_MSG_MAXLEN] = { 0 };
                 snprintf(message, VC_LOG_MSG_MAXLEN, "Failed to flush packet: %d", status);
-                VC_PushLogMessage(message, VC_LOG_ERROR);
+                VcPushLogMessage(message, VC_LOG_ERROR);
                 return -1;
             }
 
@@ -347,7 +347,7 @@ int VC_Encode(VC_EncodeOptions options)
         {
             char message[VC_LOG_MSG_MAXLEN] = { 0 };
             snprintf(message, VC_LOG_MSG_MAXLEN, "Couldn't write block: %d", status);
-            VC_PushLogMessage(message, VC_LOG_ERROR);
+            VcPushLogMessage(message, VC_LOG_ERROR);
             return -1;
         }
         

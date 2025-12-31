@@ -15,9 +15,9 @@ typedef struct VC_LogMessage
 
 static VC_LogMessage aMessageQueue[VC_LOG_MSG_QUEUE_LEN];
 static size_t nMessageCount = 0;
-static VC_LogMessagePriority eMinPriority = VC_LOG_INFO;
+static VcLogMessagePriority eMinPriority = VC_LOG_INFO;
 
-void VC_WriteToLogStream(const char *message, VC_LogMessagePriority priority, FILE *stream)
+void VC_WriteToLogStream(const char *message, VcLogMessagePriority priority, FILE *stream)
 {
     const char *prefix;
     size_t prefixLen;
@@ -52,21 +52,21 @@ void VC_WriteToLogStream(const char *message, VC_LogMessagePriority priority, FI
     fprintf(stream, "[%s] %s\n", prefix, message);
 }
 
-void VC_WriteToLogFile(const char *message, VC_LogMessagePriority priority)
+void VcWriteToLogFile(const char *message, VcLogMessagePriority priority)
 {
     FILE *logfile = fopen(VC_LOG_FILEPATH, "a");
     VC_WriteToLogStream(message, priority, logfile);
     fclose(logfile);
 }
 
-void VC_WriteToStderr(const char *message, VC_LogMessagePriority priority)
+void VcWriteToStderr(const char *message, VcLogMessagePriority priority)
 {
     VC_WriteToLogStream(message, priority, stderr);
 }
 
-VC_LoggerCallback loggerCallback = VC_WriteToStderr;
+VC_LoggerCallback loggerCallback = VcWriteToStderr;
 
-void VC_PushLogMessage(const char *message, VC_LogMessagePriority priority)
+void VcPushLogMessage(const char *message, VcLogMessagePriority priority)
 {
     if (priority < eMinPriority)
     {
@@ -76,8 +76,8 @@ void VC_PushLogMessage(const char *message, VC_LogMessagePriority priority)
     if (nMessageCount == VC_LOG_MSG_QUEUE_LEN)
     {
         VC_LoggerCallback oldCb = loggerCallback;
-        loggerCallback = VC_WriteToLogFile;
-        VC_ReadLogQueue();
+        loggerCallback = VcWriteToLogFile;
+        VcReadLogQueue();
         loggerCallback = oldCb;
     }
     
@@ -86,27 +86,27 @@ void VC_PushLogMessage(const char *message, VC_LogMessagePriority priority)
     nMessageCount++;
 }
 
-void VC_ReadLogQueue()
+void VcReadLogQueue()
 {
     for (size_t i = 0; i < nMessageCount; i++)
     {
-        if ((VC_LogMessagePriority) aMessageQueue[i].ePriority < eMinPriority)
+        if ((VcLogMessagePriority) aMessageQueue[i].ePriority < eMinPriority)
         {
             continue;
         }
         
-        loggerCallback(aMessageQueue[i].sMessage, (VC_LogMessagePriority) aMessageQueue[i].ePriority);
+        loggerCallback(aMessageQueue[i].sMessage, (VcLogMessagePriority) aMessageQueue[i].ePriority);
     }
 
     nMessageCount = 0;
 }
 
-void VC_SetLoggerCallback(VC_LoggerCallback cb)
+void VcSetLoggerCallback(VC_LoggerCallback cb)
 {
     loggerCallback = cb;
 }
 
-void VC_SetLogPriority(VC_LogMessagePriority priority) 
+void VcSetLogPriority(VcLogMessagePriority priority) 
 {
     eMinPriority = priority;
 }

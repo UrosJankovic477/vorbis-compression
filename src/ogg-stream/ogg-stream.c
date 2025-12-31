@@ -42,7 +42,7 @@ void vc_ogg_stream_play(VcOggStream *self)
     
     self->playing = TRUE;
     gtk_media_stream_set_playing(GTK_MEDIA_STREAM(self), TRUE);
-    VC_StartAudioThread(GTK_MEDIA_STREAM(self));
+    VcStartAudioThread(GTK_MEDIA_STREAM(self));
 }
 
 void vc_ogg_stream_pause(VcOggStream *self) 
@@ -54,12 +54,12 @@ void vc_ogg_stream_pause(VcOggStream *self)
     
     self->playing = FALSE;
     gtk_media_stream_set_playing(GTK_MEDIA_STREAM(self), FALSE);
-    VC_StopAudioThread(GTK_MEDIA_STREAM(self));
+    VcStopAudioThread(GTK_MEDIA_STREAM(self));
 }
 
 void vc_ogg_stream_seek(VcOggStream *self, gint64 timestamp) 
 {
-    
+
 }
 
 void vc_ogg_stream_set_volume(VcOggStream *self, double volume) 
