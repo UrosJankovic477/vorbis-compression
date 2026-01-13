@@ -49,7 +49,7 @@ typedef struct
 } VC_EncodingContext;
 
 static VC_EncodingContext vc_ctx = { 0 };
-static uint8_t vc_read_buffer[VC_RB_SIZE];
+static uint8_t vc_read_buffer[VC_BUFFER_SIZE];
 
 int VC_ReadHeader()
 {
@@ -86,7 +86,7 @@ int VC_ReadHeader()
 
 void VC_WriteBufferPCM(size_t n_bytes)
 {
-    float **channels = vorbis_analysis_buffer(&vc_ctx.dsp, VC_RB_SIZE);
+    float **channels = vorbis_analysis_buffer(&vc_ctx.dsp, VC_BUFFER_SIZE);
     uint16_t bytesPerSample = vc_ctx.common.wBitsPerSample / 8;
     uint16_t stride = bytesPerSample * vc_ctx.common.nChannels;
     for(size_t i = 0; i < n_bytes / stride; i++)
@@ -267,7 +267,7 @@ int VcEncode(VcEncodeOptions options)
 
     while (!eos)
     {
-        size_t n_bytes =  g_input_stream_read(G_INPUT_STREAM(vc_ctx.pInfile), vc_read_buffer, VC_RB_SIZE, NULL, &error);
+        size_t n_bytes =  g_input_stream_read(G_INPUT_STREAM(vc_ctx.pInfile), vc_read_buffer, VC_BUFFER_SIZE, NULL, &error);
         if (error != NULL)
         {
             VcPushLogMessage(error->message, VC_LOG_ERROR);

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.15...4.0)
+cmake_minimum_required(VERSION 3.14...4.0)
 
 project(
     vorbis-compression
@@ -18,7 +18,7 @@ set(SIZE64 int64_t)
 set(USIZE64 uint64_t)
 
 configure_file(
-    ${CMAKE_SOURCE_DIR}/include/ogg/config_types.h.in ${CMAKE_SOURCE_DIR}/include/ogg/config_types.h
+    ${CMAKE_SOURCE_DIR}/include/ogg/config_types.h.in ${CMAKE_SOURCE_DIR}/include/ogg/config_types.h 
 
 )
 
@@ -39,6 +39,17 @@ FetchContent_Declare(
   
 FetchContent_MakeAvailable(Vorbis)
 
+set(SOUNDIO_BUILD_STATIC ON  CACHE BOOL "" FORCE)
+set(SOUNDIO_BUILD_SHARED OFF CACHE BOOL "" FORCE)
+
+FetchContent_Declare(
+  soundio
+  GIT_REPOSITORY https://github.com/andrewrk/libsoundio.git
+  GIT_TAG master
+)
+
+FetchContent_MakeAvailable(soundio)
+
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(GTK4 REQUIRED gtk4)
 
@@ -57,6 +68,7 @@ file(
 
 include_directories(${CMAKE_SOURCE_DIR}/include ${GTK4_INCLUDE_DIRS})
 link_directories(${CMAKE_SOURCE_DIR}/src/*)
-add_compile_options(-Wall -O3 ${GTK4_CFLAGS_OTHER})
+add_compile_definitions(_USE_MATH_DEFINES)
+add_compile_options(-Wall -O0 ${GTK4_CFLAGS_OTHER} -ggdb)
 add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${HEADER_FILES})
-target_link_libraries(${PROJECT_NAME} ogg vorbis vorbisfile vorbisenc ${GTK4_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} PRIVATE soundio ogg vorbis vorbisfile vorbisenc ${GTK4_LIBRARIES})
