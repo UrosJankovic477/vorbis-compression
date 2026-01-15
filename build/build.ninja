@@ -49,30 +49,34 @@ cmake_ninja_workdir = /home/uros/dev/vorbis-compression/build/
 
 build cmake_object_order_depends_target_vorbis-compression: phony || cmake_object_order_depends_target_ogg cmake_object_order_depends_target_vorbis cmake_object_order_depends_target_vorbisenc cmake_object_order_depends_target_vorbisfile
 
+build CMakeFiles/vorbis-compression.dir/src/audio-io/audio-io.c.o: C_COMPILER__vorbis-compression_unscanned_Debug /home/uros/dev/vorbis-compression/src/audio-io/audio-io.c || cmake_object_order_depends_target_vorbis-compression
+  DEFINES = -D_USE_MATH_DEFINES
+  DEP_FILE = CMakeFiles/vorbis-compression.dir/src/audio-io/audio-io.c.o.d
+  FLAGS = -g -Wall -O3 -mfpmath=sse -msse -msse2 -pthread -ggdb
+  INCLUDES = -I/home/uros/dev/vorbis-compression/include -I/usr/include/gtk-4.0 -I/usr/include/pango-1.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/harfbuzz -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/fribidi -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/webp -I/usr/include/graphene-1.0 -I/usr/lib/x86_64-linux-gnu/graphene-1.0/include -I/home/uros/dev/vorbis-compression/build/_deps/ogg-src/include -I/home/uros/dev/vorbis-compression/build/_deps/ogg-build/include -I/home/uros/dev/vorbis-compression/build/_deps/vorbis-src/include
+  OBJECT_DIR = CMakeFiles/vorbis-compression.dir
+  OBJECT_FILE_DIR = CMakeFiles/vorbis-compression.dir/src/audio-io
+
 build CMakeFiles/vorbis-compression.dir/src/encoding/encoding.c.o: C_COMPILER__vorbis-compression_unscanned_Debug /home/uros/dev/vorbis-compression/src/encoding/encoding.c || cmake_object_order_depends_target_vorbis-compression
+  DEFINES = -D_USE_MATH_DEFINES
   DEP_FILE = CMakeFiles/vorbis-compression.dir/src/encoding/encoding.c.o.d
-  FLAGS = -g -Wall -O3 -mfpmath=sse -msse -msse2 -pthread
+  FLAGS = -g -Wall -O3 -mfpmath=sse -msse -msse2 -pthread -ggdb
   INCLUDES = -I/home/uros/dev/vorbis-compression/include -I/usr/include/gtk-4.0 -I/usr/include/pango-1.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/harfbuzz -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/fribidi -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/webp -I/usr/include/graphene-1.0 -I/usr/lib/x86_64-linux-gnu/graphene-1.0/include -I/home/uros/dev/vorbis-compression/build/_deps/ogg-src/include -I/home/uros/dev/vorbis-compression/build/_deps/ogg-build/include -I/home/uros/dev/vorbis-compression/build/_deps/vorbis-src/include
   OBJECT_DIR = CMakeFiles/vorbis-compression.dir
   OBJECT_FILE_DIR = CMakeFiles/vorbis-compression.dir/src/encoding
 
 build CMakeFiles/vorbis-compression.dir/src/gui/gui.c.o: C_COMPILER__vorbis-compression_unscanned_Debug /home/uros/dev/vorbis-compression/src/gui/gui.c || cmake_object_order_depends_target_vorbis-compression
+  DEFINES = -D_USE_MATH_DEFINES
   DEP_FILE = CMakeFiles/vorbis-compression.dir/src/gui/gui.c.o.d
-  FLAGS = -g -Wall -O3 -mfpmath=sse -msse -msse2 -pthread
+  FLAGS = -g -Wall -O3 -mfpmath=sse -msse -msse2 -pthread -ggdb
   INCLUDES = -I/home/uros/dev/vorbis-compression/include -I/usr/include/gtk-4.0 -I/usr/include/pango-1.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/harfbuzz -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/fribidi -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/webp -I/usr/include/graphene-1.0 -I/usr/lib/x86_64-linux-gnu/graphene-1.0/include -I/home/uros/dev/vorbis-compression/build/_deps/ogg-src/include -I/home/uros/dev/vorbis-compression/build/_deps/ogg-build/include -I/home/uros/dev/vorbis-compression/build/_deps/vorbis-src/include
   OBJECT_DIR = CMakeFiles/vorbis-compression.dir
   OBJECT_FILE_DIR = CMakeFiles/vorbis-compression.dir/src/gui
 
-build CMakeFiles/vorbis-compression.dir/src/logging/logging.c.o: C_COMPILER__vorbis-compression_unscanned_Debug /home/uros/dev/vorbis-compression/src/logging/logging.c || cmake_object_order_depends_target_vorbis-compression
-  DEP_FILE = CMakeFiles/vorbis-compression.dir/src/logging/logging.c.o.d
-  FLAGS = -g -Wall -O3 -mfpmath=sse -msse -msse2 -pthread
-  INCLUDES = -I/home/uros/dev/vorbis-compression/include -I/usr/include/gtk-4.0 -I/usr/include/pango-1.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/harfbuzz -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/fribidi -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/webp -I/usr/include/graphene-1.0 -I/usr/lib/x86_64-linux-gnu/graphene-1.0/include -I/home/uros/dev/vorbis-compression/build/_deps/ogg-src/include -I/home/uros/dev/vorbis-compression/build/_deps/ogg-build/include -I/home/uros/dev/vorbis-compression/build/_deps/vorbis-src/include
-  OBJECT_DIR = CMakeFiles/vorbis-compression.dir
-  OBJECT_FILE_DIR = CMakeFiles/vorbis-compression.dir/src/logging
-
 build CMakeFiles/vorbis-compression.dir/src/main.c.o: C_COMPILER__vorbis-compression_unscanned_Debug /home/uros/dev/vorbis-compression/src/main.c || cmake_object_order_depends_target_vorbis-compression
+  DEFINES = -D_USE_MATH_DEFINES
   DEP_FILE = CMakeFiles/vorbis-compression.dir/src/main.c.o.d
-  FLAGS = -g -Wall -O3 -mfpmath=sse -msse -msse2 -pthread
+  FLAGS = -g -Wall -O3 -mfpmath=sse -msse -msse2 -pthread -ggdb
   INCLUDES = -I/home/uros/dev/vorbis-compression/include -I/usr/include/gtk-4.0 -I/usr/include/pango-1.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/harfbuzz -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/fribidi -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/webp -I/usr/include/graphene-1.0 -I/usr/lib/x86_64-linux-gnu/graphene-1.0/include -I/home/uros/dev/vorbis-compression/build/_deps/ogg-src/include -I/home/uros/dev/vorbis-compression/build/_deps/ogg-build/include -I/home/uros/dev/vorbis-compression/build/_deps/vorbis-src/include
   OBJECT_DIR = CMakeFiles/vorbis-compression.dir
   OBJECT_FILE_DIR = CMakeFiles/vorbis-compression.dir/src
@@ -85,9 +89,9 @@ build CMakeFiles/vorbis-compression.dir/src/main.c.o: C_COMPILER__vorbis-compres
 #############################################
 # Link the executable vorbis-compression
 
-build vorbis-compression: C_EXECUTABLE_LINKER__vorbis-compression_Debug CMakeFiles/vorbis-compression.dir/src/encoding/encoding.c.o CMakeFiles/vorbis-compression.dir/src/gui/gui.c.o CMakeFiles/vorbis-compression.dir/src/logging/logging.c.o CMakeFiles/vorbis-compression.dir/src/main.c.o | _deps/ogg-build/libogg.a _deps/vorbis-build/lib/libvorbis.a _deps/vorbis-build/lib/libvorbisfile.a _deps/vorbis-build/lib/libvorbisenc.a _deps/vorbis-build/lib/libvorbis.a _deps/ogg-build/libogg.a || _deps/ogg-build/libogg.a _deps/vorbis-build/lib/libvorbis.a _deps/vorbis-build/lib/libvorbisenc.a _deps/vorbis-build/lib/libvorbisfile.a
+build vorbis-compression: C_EXECUTABLE_LINKER__vorbis-compression_Debug CMakeFiles/vorbis-compression.dir/src/audio-io/audio-io.c.o CMakeFiles/vorbis-compression.dir/src/encoding/encoding.c.o CMakeFiles/vorbis-compression.dir/src/gui/gui.c.o CMakeFiles/vorbis-compression.dir/src/main.c.o | _deps/ogg-build/libogg.a _deps/vorbis-build/lib/libvorbis.a _deps/vorbis-build/lib/libvorbisfile.a _deps/vorbis-build/lib/libvorbisenc.a _deps/vorbis-build/lib/libvorbis.a _deps/ogg-build/libogg.a || _deps/ogg-build/libogg.a _deps/vorbis-build/lib/libvorbis.a _deps/vorbis-build/lib/libvorbisenc.a _deps/vorbis-build/lib/libvorbisfile.a
   FLAGS = -g
-  LINK_LIBRARIES = -Wl,-rpath,"/home/uros/dev/vorbis-compression/src/*"  _deps/ogg-build/libogg.a  _deps/vorbis-build/lib/libvorbis.a  _deps/vorbis-build/lib/libvorbisfile.a  _deps/vorbis-build/lib/libvorbisenc.a  -lgtk-4  -lpangocairo-1.0  -lpango-1.0  -lharfbuzz  -lgdk_pixbuf-2.0  -lcairo-gobject  -lcairo  -lvulkan  -lgraphene-1.0  -lgio-2.0  -lgobject-2.0  -lglib-2.0  _deps/vorbis-build/lib/libvorbis.a  _deps/ogg-build/libogg.a  -lm
+  LINK_LIBRARIES = -Wl,-rpath,"/home/uros/dev/vorbis-compression/src/*"  -lsoundio  _deps/ogg-build/libogg.a  _deps/vorbis-build/lib/libvorbis.a  _deps/vorbis-build/lib/libvorbisfile.a  _deps/vorbis-build/lib/libvorbisenc.a  -lgtk-4  -lpangocairo-1.0  -lpango-1.0  -lharfbuzz  -lgdk_pixbuf-2.0  -lcairo-gobject  -lcairo  -lvulkan  -lgraphene-1.0  -lgio-2.0  -lgobject-2.0  -lglib-2.0  _deps/vorbis-build/lib/libvorbis.a  _deps/ogg-build/libogg.a  -lm
   LINK_PATH = -L"/home/uros/dev/vorbis-compression/src/*"
   OBJECT_DIR = CMakeFiles/vorbis-compression.dir
   POST_BUILD = :
@@ -1334,6 +1338,725 @@ build _deps/vorbis-build/test/CMakeFiles/install/strip.util: CUSTOM_COMMAND _dep
 build _deps/vorbis-build/test/install/strip: phony _deps/vorbis-build/test/CMakeFiles/install/strip.util
 
 # =============================================================================
+# Write statements declared in CMakeLists.txt:
+# /home/uros/dev/vorbis-compression/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for SHARED_LIBRARY target libsoundio_shared
+
+
+#############################################
+# Order-only phony target for libsoundio_shared
+
+build cmake_object_order_depends_target_libsoundio_shared: phony || _deps/soundio-build/CMakeFiles/libsoundio_shared.dir
+
+build _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src/soundio.c.o: C_COMPILER__libsoundio_shared_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/soundio.c || cmake_object_order_depends_target_libsoundio_shared
+  DEFINES = -Dlibsoundio_shared_EXPORTS
+  DEP_FILE = _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src/soundio.c.o.d
+  FLAGS = -g -Werror -pedantic -fPIC -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/libsoundio_shared.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src
+
+build _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src/util.c.o: C_COMPILER__libsoundio_shared_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/util.c || cmake_object_order_depends_target_libsoundio_shared
+  DEFINES = -Dlibsoundio_shared_EXPORTS
+  DEP_FILE = _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src/util.c.o.d
+  FLAGS = -g -Werror -pedantic -fPIC -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/libsoundio_shared.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src
+
+build _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src/os.c.o: C_COMPILER__libsoundio_shared_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/os.c || cmake_object_order_depends_target_libsoundio_shared
+  DEFINES = -Dlibsoundio_shared_EXPORTS
+  DEP_FILE = _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src/os.c.o.d
+  FLAGS = -g -Werror -pedantic -fPIC -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/libsoundio_shared.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src
+
+build _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src/dummy.c.o: C_COMPILER__libsoundio_shared_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/dummy.c || cmake_object_order_depends_target_libsoundio_shared
+  DEFINES = -Dlibsoundio_shared_EXPORTS
+  DEP_FILE = _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src/dummy.c.o.d
+  FLAGS = -g -Werror -pedantic -fPIC -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/libsoundio_shared.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src
+
+build _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src/channel_layout.c.o: C_COMPILER__libsoundio_shared_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/channel_layout.c || cmake_object_order_depends_target_libsoundio_shared
+  DEFINES = -Dlibsoundio_shared_EXPORTS
+  DEP_FILE = _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src/channel_layout.c.o.d
+  FLAGS = -g -Werror -pedantic -fPIC -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/libsoundio_shared.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src
+
+build _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src/ring_buffer.c.o: C_COMPILER__libsoundio_shared_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/ring_buffer.c || cmake_object_order_depends_target_libsoundio_shared
+  DEFINES = -Dlibsoundio_shared_EXPORTS
+  DEP_FILE = _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src/ring_buffer.c.o.d
+  FLAGS = -g -Werror -pedantic -fPIC -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/libsoundio_shared.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src
+
+build _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src/pulseaudio.c.o: C_COMPILER__libsoundio_shared_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/pulseaudio.c || cmake_object_order_depends_target_libsoundio_shared
+  DEFINES = -Dlibsoundio_shared_EXPORTS
+  DEP_FILE = _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src/pulseaudio.c.o.d
+  FLAGS = -g -Werror -pedantic -fPIC -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/libsoundio_shared.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src
+
+build _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src/alsa.c.o: C_COMPILER__libsoundio_shared_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/alsa.c || cmake_object_order_depends_target_libsoundio_shared
+  DEFINES = -Dlibsoundio_shared_EXPORTS
+  DEP_FILE = _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src/alsa.c.o.d
+  FLAGS = -g -Werror -pedantic -fPIC -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/libsoundio_shared.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src
+
+
+# =============================================================================
+# Link build statements for SHARED_LIBRARY target libsoundio_shared
+
+
+#############################################
+# Link the shared library _deps/soundio-build/libsoundio.so.2.0.0
+
+build _deps/soundio-build/libsoundio.so.2.0.0: C_SHARED_LIBRARY_LINKER__libsoundio_shared_Debug _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src/soundio.c.o _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src/util.c.o _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src/os.c.o _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src/dummy.c.o _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src/channel_layout.c.o _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src/ring_buffer.c.o _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src/pulseaudio.c.o _deps/soundio-build/CMakeFiles/libsoundio_shared.dir/src/alsa.c.o | /usr/lib/x86_64-linux-gnu/libpulse.so /usr/lib/x86_64-linux-gnu/libasound.so
+  LANGUAGE_COMPILE_FLAGS = -g -Werror -pedantic
+  LINK_LIBRARIES = -lpulse  -lasound
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/libsoundio_shared.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  SONAME = libsoundio.so.2
+  SONAME_FLAG = -Wl,-soname,
+  TARGET_FILE = _deps/soundio-build/libsoundio.so.2.0.0
+  TARGET_IMPLIB = _deps/soundio-build/
+  TARGET_PDB = soundio.so.dbg
+
+
+#############################################
+# Create library symlink _deps/soundio-build/libsoundio.so
+
+build _deps/soundio-build/libsoundio.so.2 _deps/soundio-build/libsoundio.so: CMAKE_SYMLINK_LIBRARY _deps/soundio-build/libsoundio.so.2.0.0
+  POST_BUILD = :
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target libsoundio_static
+
+
+#############################################
+# Order-only phony target for libsoundio_static
+
+build cmake_object_order_depends_target_libsoundio_static: phony || _deps/soundio-build/CMakeFiles/libsoundio_static.dir
+
+build _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src/soundio.c.o: C_COMPILER__libsoundio_static_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/soundio.c || cmake_object_order_depends_target_libsoundio_static
+  DEP_FILE = _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src/soundio.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/libsoundio_static.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src
+
+build _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src/util.c.o: C_COMPILER__libsoundio_static_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/util.c || cmake_object_order_depends_target_libsoundio_static
+  DEP_FILE = _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src/util.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/libsoundio_static.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src
+
+build _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src/os.c.o: C_COMPILER__libsoundio_static_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/os.c || cmake_object_order_depends_target_libsoundio_static
+  DEP_FILE = _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src/os.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/libsoundio_static.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src
+
+build _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src/dummy.c.o: C_COMPILER__libsoundio_static_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/dummy.c || cmake_object_order_depends_target_libsoundio_static
+  DEP_FILE = _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src/dummy.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/libsoundio_static.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src
+
+build _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src/channel_layout.c.o: C_COMPILER__libsoundio_static_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/channel_layout.c || cmake_object_order_depends_target_libsoundio_static
+  DEP_FILE = _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src/channel_layout.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/libsoundio_static.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src
+
+build _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src/ring_buffer.c.o: C_COMPILER__libsoundio_static_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/ring_buffer.c || cmake_object_order_depends_target_libsoundio_static
+  DEP_FILE = _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src/ring_buffer.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/libsoundio_static.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src
+
+build _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src/pulseaudio.c.o: C_COMPILER__libsoundio_static_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/pulseaudio.c || cmake_object_order_depends_target_libsoundio_static
+  DEP_FILE = _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src/pulseaudio.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/libsoundio_static.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src
+
+build _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src/alsa.c.o: C_COMPILER__libsoundio_static_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/alsa.c || cmake_object_order_depends_target_libsoundio_static
+  DEP_FILE = _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src/alsa.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/libsoundio_static.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target libsoundio_static
+
+
+#############################################
+# Link the static library _deps/soundio-build/libsoundio.a
+
+build _deps/soundio-build/libsoundio.a: C_STATIC_LIBRARY_LINKER__libsoundio_static_Debug _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src/soundio.c.o _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src/util.c.o _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src/os.c.o _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src/dummy.c.o _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src/channel_layout.c.o _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src/ring_buffer.c.o _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src/pulseaudio.c.o _deps/soundio-build/CMakeFiles/libsoundio_static.dir/src/alsa.c.o
+  LANGUAGE_COMPILE_FLAGS = -g -Werror -pedantic
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/libsoundio_static.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = _deps/soundio-build/libsoundio.a
+  TARGET_PDB = soundio.a.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target sio_sine
+
+
+#############################################
+# Order-only phony target for sio_sine
+
+build cmake_object_order_depends_target_sio_sine: phony || cmake_object_order_depends_target_libsoundio_shared
+
+build _deps/soundio-build/CMakeFiles/sio_sine.dir/example/sio_sine.c.o: C_COMPILER__sio_sine_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/example/sio_sine.c || cmake_object_order_depends_target_sio_sine
+  DEP_FILE = _deps/soundio-build/CMakeFiles/sio_sine.dir/example/sio_sine.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c99 -Wall
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/sio_sine.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/sio_sine.dir/example
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target sio_sine
+
+
+#############################################
+# Link the executable _deps/soundio-build/sio_sine
+
+build _deps/soundio-build/sio_sine: C_EXECUTABLE_LINKER__sio_sine_Debug _deps/soundio-build/CMakeFiles/sio_sine.dir/example/sio_sine.c.o | _deps/soundio-build/libsoundio.so.2.0.0 /usr/lib/x86_64-linux-gnu/libpulse.so /usr/lib/x86_64-linux-gnu/libasound.so || _deps/soundio-build/libsoundio.so _deps/soundio-build/libsoundio.so
+  FLAGS = -g -Werror -pedantic
+  LINK_FLAGS = -rdynamic
+  LINK_LIBRARIES = -Wl,-rpath,/home/uros/dev/vorbis-compression/build/_deps/soundio-build:  _deps/soundio-build/libsoundio.so.2.0.0  -lm  -lpulse  -lasound
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/sio_sine.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = _deps/soundio-build/sio_sine
+  TARGET_PDB = sio_sine.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target sio_list_devices
+
+
+#############################################
+# Order-only phony target for sio_list_devices
+
+build cmake_object_order_depends_target_sio_list_devices: phony || cmake_object_order_depends_target_libsoundio_shared
+
+build _deps/soundio-build/CMakeFiles/sio_list_devices.dir/example/sio_list_devices.c.o: C_COMPILER__sio_list_devices_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/example/sio_list_devices.c || cmake_object_order_depends_target_sio_list_devices
+  DEP_FILE = _deps/soundio-build/CMakeFiles/sio_list_devices.dir/example/sio_list_devices.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c99 -Wall
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/sio_list_devices.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/sio_list_devices.dir/example
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target sio_list_devices
+
+
+#############################################
+# Link the executable _deps/soundio-build/sio_list_devices
+
+build _deps/soundio-build/sio_list_devices: C_EXECUTABLE_LINKER__sio_list_devices_Debug _deps/soundio-build/CMakeFiles/sio_list_devices.dir/example/sio_list_devices.c.o | _deps/soundio-build/libsoundio.so.2.0.0 /usr/lib/x86_64-linux-gnu/libpulse.so /usr/lib/x86_64-linux-gnu/libasound.so || _deps/soundio-build/libsoundio.so _deps/soundio-build/libsoundio.so
+  FLAGS = -g -Werror -pedantic
+  LINK_FLAGS = -rdynamic
+  LINK_LIBRARIES = -Wl,-rpath,/home/uros/dev/vorbis-compression/build/_deps/soundio-build:  _deps/soundio-build/libsoundio.so.2.0.0  -lpulse  -lasound
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/sio_list_devices.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = _deps/soundio-build/sio_list_devices
+  TARGET_PDB = sio_list_devices.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target sio_microphone
+
+
+#############################################
+# Order-only phony target for sio_microphone
+
+build cmake_object_order_depends_target_sio_microphone: phony || cmake_object_order_depends_target_libsoundio_shared
+
+build _deps/soundio-build/CMakeFiles/sio_microphone.dir/example/sio_microphone.c.o: C_COMPILER__sio_microphone_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/example/sio_microphone.c || cmake_object_order_depends_target_sio_microphone
+  DEP_FILE = _deps/soundio-build/CMakeFiles/sio_microphone.dir/example/sio_microphone.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c99 -Wall
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/sio_microphone.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/sio_microphone.dir/example
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target sio_microphone
+
+
+#############################################
+# Link the executable _deps/soundio-build/sio_microphone
+
+build _deps/soundio-build/sio_microphone: C_EXECUTABLE_LINKER__sio_microphone_Debug _deps/soundio-build/CMakeFiles/sio_microphone.dir/example/sio_microphone.c.o | _deps/soundio-build/libsoundio.so.2.0.0 /usr/lib/x86_64-linux-gnu/libpulse.so /usr/lib/x86_64-linux-gnu/libasound.so || _deps/soundio-build/libsoundio.so _deps/soundio-build/libsoundio.so
+  FLAGS = -g -Werror -pedantic
+  LINK_FLAGS = -rdynamic
+  LINK_LIBRARIES = -Wl,-rpath,/home/uros/dev/vorbis-compression/build/_deps/soundio-build:  _deps/soundio-build/libsoundio.so.2.0.0  -lpulse  -lasound
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/sio_microphone.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = _deps/soundio-build/sio_microphone
+  TARGET_PDB = sio_microphone.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target sio_record
+
+
+#############################################
+# Order-only phony target for sio_record
+
+build cmake_object_order_depends_target_sio_record: phony || cmake_object_order_depends_target_libsoundio_shared
+
+build _deps/soundio-build/CMakeFiles/sio_record.dir/example/sio_record.c.o: C_COMPILER__sio_record_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/example/sio_record.c || cmake_object_order_depends_target_sio_record
+  DEP_FILE = _deps/soundio-build/CMakeFiles/sio_record.dir/example/sio_record.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c99 -Wall
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/sio_record.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/sio_record.dir/example
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target sio_record
+
+
+#############################################
+# Link the executable _deps/soundio-build/sio_record
+
+build _deps/soundio-build/sio_record: C_EXECUTABLE_LINKER__sio_record_Debug _deps/soundio-build/CMakeFiles/sio_record.dir/example/sio_record.c.o | _deps/soundio-build/libsoundio.so.2.0.0 /usr/lib/x86_64-linux-gnu/libpulse.so /usr/lib/x86_64-linux-gnu/libasound.so || _deps/soundio-build/libsoundio.so _deps/soundio-build/libsoundio.so
+  FLAGS = -g -Werror -pedantic
+  LINK_FLAGS = -rdynamic
+  LINK_LIBRARIES = -Wl,-rpath,/home/uros/dev/vorbis-compression/build/_deps/soundio-build:  _deps/soundio-build/libsoundio.so.2.0.0  -lpulse  -lasound
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/sio_record.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = _deps/soundio-build/sio_record
+  TARGET_PDB = sio_record.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target unit_tests
+
+
+#############################################
+# Order-only phony target for unit_tests
+
+build cmake_object_order_depends_target_unit_tests: phony || _deps/soundio-build/CMakeFiles/unit_tests.dir
+
+build _deps/soundio-build/CMakeFiles/unit_tests.dir/test/unit_tests.c.o: C_COMPILER__unit_tests_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/test/unit_tests.c || cmake_object_order_depends_target_unit_tests
+  DEP_FILE = _deps/soundio-build/CMakeFiles/unit_tests.dir/test/unit_tests.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces -fprofile-arcs -ftest-coverage
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/unit_tests.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/unit_tests.dir/test
+
+build _deps/soundio-build/CMakeFiles/unit_tests.dir/src/soundio.c.o: C_COMPILER__unit_tests_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/soundio.c || cmake_object_order_depends_target_unit_tests
+  DEP_FILE = _deps/soundio-build/CMakeFiles/unit_tests.dir/src/soundio.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces -fprofile-arcs -ftest-coverage
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/unit_tests.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/unit_tests.dir/src
+
+build _deps/soundio-build/CMakeFiles/unit_tests.dir/src/util.c.o: C_COMPILER__unit_tests_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/util.c || cmake_object_order_depends_target_unit_tests
+  DEP_FILE = _deps/soundio-build/CMakeFiles/unit_tests.dir/src/util.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces -fprofile-arcs -ftest-coverage
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/unit_tests.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/unit_tests.dir/src
+
+build _deps/soundio-build/CMakeFiles/unit_tests.dir/src/os.c.o: C_COMPILER__unit_tests_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/os.c || cmake_object_order_depends_target_unit_tests
+  DEP_FILE = _deps/soundio-build/CMakeFiles/unit_tests.dir/src/os.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces -fprofile-arcs -ftest-coverage
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/unit_tests.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/unit_tests.dir/src
+
+build _deps/soundio-build/CMakeFiles/unit_tests.dir/src/dummy.c.o: C_COMPILER__unit_tests_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/dummy.c || cmake_object_order_depends_target_unit_tests
+  DEP_FILE = _deps/soundio-build/CMakeFiles/unit_tests.dir/src/dummy.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces -fprofile-arcs -ftest-coverage
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/unit_tests.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/unit_tests.dir/src
+
+build _deps/soundio-build/CMakeFiles/unit_tests.dir/src/channel_layout.c.o: C_COMPILER__unit_tests_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/channel_layout.c || cmake_object_order_depends_target_unit_tests
+  DEP_FILE = _deps/soundio-build/CMakeFiles/unit_tests.dir/src/channel_layout.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces -fprofile-arcs -ftest-coverage
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/unit_tests.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/unit_tests.dir/src
+
+build _deps/soundio-build/CMakeFiles/unit_tests.dir/src/ring_buffer.c.o: C_COMPILER__unit_tests_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/ring_buffer.c || cmake_object_order_depends_target_unit_tests
+  DEP_FILE = _deps/soundio-build/CMakeFiles/unit_tests.dir/src/ring_buffer.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces -fprofile-arcs -ftest-coverage
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/unit_tests.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/unit_tests.dir/src
+
+build _deps/soundio-build/CMakeFiles/unit_tests.dir/src/pulseaudio.c.o: C_COMPILER__unit_tests_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/pulseaudio.c || cmake_object_order_depends_target_unit_tests
+  DEP_FILE = _deps/soundio-build/CMakeFiles/unit_tests.dir/src/pulseaudio.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces -fprofile-arcs -ftest-coverage
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/unit_tests.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/unit_tests.dir/src
+
+build _deps/soundio-build/CMakeFiles/unit_tests.dir/src/alsa.c.o: C_COMPILER__unit_tests_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/alsa.c || cmake_object_order_depends_target_unit_tests
+  DEP_FILE = _deps/soundio-build/CMakeFiles/unit_tests.dir/src/alsa.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces -fprofile-arcs -ftest-coverage
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/unit_tests.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/unit_tests.dir/src
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target unit_tests
+
+
+#############################################
+# Link the executable _deps/soundio-build/unit_tests
+
+build _deps/soundio-build/unit_tests: C_EXECUTABLE_LINKER__unit_tests_Debug _deps/soundio-build/CMakeFiles/unit_tests.dir/test/unit_tests.c.o _deps/soundio-build/CMakeFiles/unit_tests.dir/src/soundio.c.o _deps/soundio-build/CMakeFiles/unit_tests.dir/src/util.c.o _deps/soundio-build/CMakeFiles/unit_tests.dir/src/os.c.o _deps/soundio-build/CMakeFiles/unit_tests.dir/src/dummy.c.o _deps/soundio-build/CMakeFiles/unit_tests.dir/src/channel_layout.c.o _deps/soundio-build/CMakeFiles/unit_tests.dir/src/ring_buffer.c.o _deps/soundio-build/CMakeFiles/unit_tests.dir/src/pulseaudio.c.o _deps/soundio-build/CMakeFiles/unit_tests.dir/src/alsa.c.o | /usr/lib/x86_64-linux-gnu/libpulse.so /usr/lib/x86_64-linux-gnu/libasound.so
+  FLAGS = -g -Werror -pedantic
+  LINK_FLAGS = -rdynamic -fprofile-arcs -ftest-coverage
+  LINK_LIBRARIES = -lpulse  -lasound
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/unit_tests.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = _deps/soundio-build/unit_tests
+  TARGET_PDB = unit_tests.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target latency
+
+
+#############################################
+# Order-only phony target for latency
+
+build cmake_object_order_depends_target_latency: phony || _deps/soundio-build/CMakeFiles/latency.dir
+
+build _deps/soundio-build/CMakeFiles/latency.dir/test/latency.c.o: C_COMPILER__latency_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/test/latency.c || cmake_object_order_depends_target_latency
+  DEP_FILE = _deps/soundio-build/CMakeFiles/latency.dir/test/latency.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/latency.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/latency.dir/test
+
+build _deps/soundio-build/CMakeFiles/latency.dir/src/soundio.c.o: C_COMPILER__latency_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/soundio.c || cmake_object_order_depends_target_latency
+  DEP_FILE = _deps/soundio-build/CMakeFiles/latency.dir/src/soundio.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/latency.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/latency.dir/src
+
+build _deps/soundio-build/CMakeFiles/latency.dir/src/util.c.o: C_COMPILER__latency_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/util.c || cmake_object_order_depends_target_latency
+  DEP_FILE = _deps/soundio-build/CMakeFiles/latency.dir/src/util.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/latency.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/latency.dir/src
+
+build _deps/soundio-build/CMakeFiles/latency.dir/src/os.c.o: C_COMPILER__latency_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/os.c || cmake_object_order_depends_target_latency
+  DEP_FILE = _deps/soundio-build/CMakeFiles/latency.dir/src/os.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/latency.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/latency.dir/src
+
+build _deps/soundio-build/CMakeFiles/latency.dir/src/dummy.c.o: C_COMPILER__latency_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/dummy.c || cmake_object_order_depends_target_latency
+  DEP_FILE = _deps/soundio-build/CMakeFiles/latency.dir/src/dummy.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/latency.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/latency.dir/src
+
+build _deps/soundio-build/CMakeFiles/latency.dir/src/channel_layout.c.o: C_COMPILER__latency_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/channel_layout.c || cmake_object_order_depends_target_latency
+  DEP_FILE = _deps/soundio-build/CMakeFiles/latency.dir/src/channel_layout.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/latency.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/latency.dir/src
+
+build _deps/soundio-build/CMakeFiles/latency.dir/src/ring_buffer.c.o: C_COMPILER__latency_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/ring_buffer.c || cmake_object_order_depends_target_latency
+  DEP_FILE = _deps/soundio-build/CMakeFiles/latency.dir/src/ring_buffer.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/latency.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/latency.dir/src
+
+build _deps/soundio-build/CMakeFiles/latency.dir/src/pulseaudio.c.o: C_COMPILER__latency_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/pulseaudio.c || cmake_object_order_depends_target_latency
+  DEP_FILE = _deps/soundio-build/CMakeFiles/latency.dir/src/pulseaudio.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/latency.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/latency.dir/src
+
+build _deps/soundio-build/CMakeFiles/latency.dir/src/alsa.c.o: C_COMPILER__latency_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/src/alsa.c || cmake_object_order_depends_target_latency
+  DEP_FILE = _deps/soundio-build/CMakeFiles/latency.dir/src/alsa.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c11 -fvisibility=hidden -Wall -Werror=strict-prototypes -Werror=old-style-definition -Werror=missing-prototypes -D_REENTRANT -D_POSIX_C_SOURCE=200809L -Wno-missing-braces
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/latency.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/latency.dir/src
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target latency
+
+
+#############################################
+# Link the executable _deps/soundio-build/latency
+
+build _deps/soundio-build/latency: C_EXECUTABLE_LINKER__latency_Debug _deps/soundio-build/CMakeFiles/latency.dir/test/latency.c.o _deps/soundio-build/CMakeFiles/latency.dir/src/soundio.c.o _deps/soundio-build/CMakeFiles/latency.dir/src/util.c.o _deps/soundio-build/CMakeFiles/latency.dir/src/os.c.o _deps/soundio-build/CMakeFiles/latency.dir/src/dummy.c.o _deps/soundio-build/CMakeFiles/latency.dir/src/channel_layout.c.o _deps/soundio-build/CMakeFiles/latency.dir/src/ring_buffer.c.o _deps/soundio-build/CMakeFiles/latency.dir/src/pulseaudio.c.o _deps/soundio-build/CMakeFiles/latency.dir/src/alsa.c.o | /usr/lib/x86_64-linux-gnu/libpulse.so /usr/lib/x86_64-linux-gnu/libasound.so
+  FLAGS = -g -Werror -pedantic
+  LINK_FLAGS = -rdynamic
+  LINK_LIBRARIES = -lpulse  -lasound  -lm
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/latency.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = _deps/soundio-build/latency
+  TARGET_PDB = latency.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target underflow
+
+
+#############################################
+# Order-only phony target for underflow
+
+build cmake_object_order_depends_target_underflow: phony || cmake_object_order_depends_target_libsoundio_shared
+
+build _deps/soundio-build/CMakeFiles/underflow.dir/test/underflow.c.o: C_COMPILER__underflow_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/test/underflow.c || cmake_object_order_depends_target_underflow
+  DEP_FILE = _deps/soundio-build/CMakeFiles/underflow.dir/test/underflow.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c99 -Wall
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/underflow.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/underflow.dir/test
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target underflow
+
+
+#############################################
+# Link the executable _deps/soundio-build/underflow
+
+build _deps/soundio-build/underflow: C_EXECUTABLE_LINKER__underflow_Debug _deps/soundio-build/CMakeFiles/underflow.dir/test/underflow.c.o | _deps/soundio-build/libsoundio.so.2.0.0 /usr/lib/x86_64-linux-gnu/libpulse.so /usr/lib/x86_64-linux-gnu/libasound.so || _deps/soundio-build/libsoundio.so _deps/soundio-build/libsoundio.so
+  FLAGS = -g -Werror -pedantic
+  LINK_FLAGS = -rdynamic
+  LINK_LIBRARIES = -Wl,-rpath,/home/uros/dev/vorbis-compression/build/_deps/soundio-build  _deps/soundio-build/libsoundio.so.2.0.0  -lm  -lpulse  -lasound
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/underflow.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = _deps/soundio-build/underflow
+  TARGET_PDB = underflow.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target backend_disconnect_recover
+
+
+#############################################
+# Order-only phony target for backend_disconnect_recover
+
+build cmake_object_order_depends_target_backend_disconnect_recover: phony || cmake_object_order_depends_target_libsoundio_shared
+
+build _deps/soundio-build/CMakeFiles/backend_disconnect_recover.dir/test/backend_disconnect_recover.c.o: C_COMPILER__backend_disconnect_recover_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/test/backend_disconnect_recover.c || cmake_object_order_depends_target_backend_disconnect_recover
+  DEP_FILE = _deps/soundio-build/CMakeFiles/backend_disconnect_recover.dir/test/backend_disconnect_recover.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c99 -Wall
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/backend_disconnect_recover.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/backend_disconnect_recover.dir/test
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target backend_disconnect_recover
+
+
+#############################################
+# Link the executable _deps/soundio-build/backend_disconnect_recover
+
+build _deps/soundio-build/backend_disconnect_recover: C_EXECUTABLE_LINKER__backend_disconnect_recover_Debug _deps/soundio-build/CMakeFiles/backend_disconnect_recover.dir/test/backend_disconnect_recover.c.o | _deps/soundio-build/libsoundio.so.2.0.0 /usr/lib/x86_64-linux-gnu/libpulse.so /usr/lib/x86_64-linux-gnu/libasound.so || _deps/soundio-build/libsoundio.so _deps/soundio-build/libsoundio.so
+  FLAGS = -g -Werror -pedantic
+  LINK_FLAGS = -rdynamic
+  LINK_LIBRARIES = -Wl,-rpath,/home/uros/dev/vorbis-compression/build/_deps/soundio-build  _deps/soundio-build/libsoundio.so.2.0.0  -lpulse  -lasound
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/backend_disconnect_recover.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = _deps/soundio-build/backend_disconnect_recover
+  TARGET_PDB = backend_disconnect_recover.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target overflow
+
+
+#############################################
+# Order-only phony target for overflow
+
+build cmake_object_order_depends_target_overflow: phony || cmake_object_order_depends_target_libsoundio_shared
+
+build _deps/soundio-build/CMakeFiles/overflow.dir/test/overflow.c.o: C_COMPILER__overflow_unscanned_Debug /home/uros/dev/vorbis-compression/build/_deps/soundio-src/test/overflow.c || cmake_object_order_depends_target_overflow
+  DEP_FILE = _deps/soundio-build/CMakeFiles/overflow.dir/test/overflow.c.o.d
+  FLAGS = -g -Werror -pedantic -std=c99 -Wall
+  INCLUDES = -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src -I/home/uros/dev/vorbis-compression/build/_deps/soundio-build -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test -I/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/overflow.dir
+  OBJECT_FILE_DIR = _deps/soundio-build/CMakeFiles/overflow.dir/test
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target overflow
+
+
+#############################################
+# Link the executable _deps/soundio-build/overflow
+
+build _deps/soundio-build/overflow: C_EXECUTABLE_LINKER__overflow_Debug _deps/soundio-build/CMakeFiles/overflow.dir/test/overflow.c.o | _deps/soundio-build/libsoundio.so.2.0.0 /usr/lib/x86_64-linux-gnu/libpulse.so /usr/lib/x86_64-linux-gnu/libasound.so || _deps/soundio-build/libsoundio.so _deps/soundio-build/libsoundio.so
+  FLAGS = -g -Werror -pedantic
+  LINK_FLAGS = -rdynamic
+  LINK_LIBRARIES = -Wl,-rpath,/home/uros/dev/vorbis-compression/build/_deps/soundio-build  _deps/soundio-build/libsoundio.so.2.0.0  -lpulse  -lasound
+  OBJECT_DIR = _deps/soundio-build/CMakeFiles/overflow.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = _deps/soundio-build/overflow
+  TARGET_PDB = overflow.dbg
+
+
+#############################################
+# Utility command for coverage
+
+build _deps/soundio-build/coverage: phony _deps/soundio-build/CMakeFiles/coverage _deps/soundio-build/unit_tests
+
+
+#############################################
+# Utility command for doc
+
+build _deps/soundio-build/doc: phony _deps/soundio-build/CMakeFiles/doc
+
+
+#############################################
+# Utility command for package
+
+build _deps/soundio-build/CMakeFiles/package.util: CUSTOM_COMMAND _deps/soundio-build/all
+  COMMAND = cd /home/uros/dev/vorbis-compression/build && /usr/bin/cpack --config ./CPackConfig.cmake
+  DESC = Run CPack packaging tool...
+  pool = console
+  restat = 1
+
+build _deps/soundio-build/package: phony _deps/soundio-build/CMakeFiles/package.util
+
+
+#############################################
+# Utility command for package_source
+
+build _deps/soundio-build/CMakeFiles/package_source.util: CUSTOM_COMMAND
+  COMMAND = cd /home/uros/dev/vorbis-compression/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/uros/dev/vorbis-compression/build/CPackSourceConfig.cmake
+  DESC = Run CPack packaging tool for source...
+  pool = console
+  restat = 1
+
+build _deps/soundio-build/package_source: phony _deps/soundio-build/CMakeFiles/package_source.util
+
+
+#############################################
+# Utility command for edit_cache
+
+build _deps/soundio-build/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /home/uros/dev/vorbis-compression/build/_deps/soundio-build && /usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build _deps/soundio-build/edit_cache: phony _deps/soundio-build/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build _deps/soundio-build/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /home/uros/dev/vorbis-compression/build/_deps/soundio-build && /usr/bin/cmake --regenerate-during-build -S/home/uros/dev/vorbis-compression -B/home/uros/dev/vorbis-compression/build
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build _deps/soundio-build/rebuild_cache: phony _deps/soundio-build/CMakeFiles/rebuild_cache.util
+
+
+#############################################
+# Utility command for list_install_components
+
+build _deps/soundio-build/list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build _deps/soundio-build/CMakeFiles/install.util: CUSTOM_COMMAND _deps/soundio-build/all
+  COMMAND = cd /home/uros/dev/vorbis-compression/build/_deps/soundio-build && /usr/bin/cmake -P cmake_install.cmake
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build _deps/soundio-build/install: phony _deps/soundio-build/CMakeFiles/install.util
+
+
+#############################################
+# Utility command for install/local
+
+build _deps/soundio-build/CMakeFiles/install/local.util: CUSTOM_COMMAND _deps/soundio-build/all
+  COMMAND = cd /home/uros/dev/vorbis-compression/build/_deps/soundio-build && /usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build _deps/soundio-build/install/local: phony _deps/soundio-build/CMakeFiles/install/local.util
+
+
+#############################################
+# Utility command for install/strip
+
+build _deps/soundio-build/CMakeFiles/install/strip.util: CUSTOM_COMMAND _deps/soundio-build/all
+  COMMAND = cd /home/uros/dev/vorbis-compression/build/_deps/soundio-build && /usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+  DESC = Installing the project stripped...
+  pool = console
+  restat = 1
+
+build _deps/soundio-build/install/strip: phony _deps/soundio-build/CMakeFiles/install/strip.util
+
+
+#############################################
+# Custom command for _deps/soundio-build/CMakeFiles/coverage
+
+build _deps/soundio-build/CMakeFiles/coverage | ${cmake_ninja_workdir}_deps/soundio-build/CMakeFiles/coverage: CUSTOM_COMMAND _deps/soundio-build/unit_tests || _deps/soundio-build/unit_tests
+  COMMAND = cd /home/uros/dev/vorbis-compression/build/_deps/soundio-build && lcov --directory . --zerocounters --rc lcov_branch_coverage=1 && ./unit_tests && lcov --directory . --capture --output-file coverage.info --rc lcov_branch_coverage=1 && lcov --remove coverage.info '/usr/*' --output-file coverage.info.cleaned --rc lcov_branch_coverage=1 && genhtml -o coverage coverage.info.cleaned --rc lcov_branch_coverage=1 && rm coverage.info coverage.info.cleaned
+
+
+#############################################
+# Custom command for _deps/soundio-build/CMakeFiles/doc
+
+build _deps/soundio-build/CMakeFiles/doc | ${cmake_ninja_workdir}_deps/soundio-build/CMakeFiles/doc: CUSTOM_COMMAND
+  COMMAND = cd /home/uros/dev/vorbis-compression/build/_deps/soundio-build && doxygen /home/uros/dev/vorbis-compression/build/_deps/soundio-build/doxygen.conf
+
+# =============================================================================
 # Target aliases.
 
 build Continuous: phony _deps/vorbis-build/Continuous
@@ -1392,7 +2115,23 @@ build NightlyTest: phony _deps/vorbis-build/NightlyTest
 
 build NightlyUpdate: phony _deps/vorbis-build/NightlyUpdate
 
+build backend_disconnect_recover: phony _deps/soundio-build/backend_disconnect_recover
+
+build coverage: phony _deps/soundio-build/coverage
+
+build doc: phony _deps/soundio-build/doc
+
+build latency: phony _deps/soundio-build/latency
+
 build libogg.a: phony _deps/ogg-build/libogg.a
+
+build libsoundio.a: phony _deps/soundio-build/libsoundio.a
+
+build libsoundio.so: phony _deps/soundio-build/libsoundio.so
+
+build libsoundio_shared: phony _deps/soundio-build/libsoundio.so
+
+build libsoundio_static: phony _deps/soundio-build/libsoundio.a
 
 build libvorbis.a: phony _deps/vorbis-build/lib/libvorbis.a
 
@@ -1402,9 +2141,23 @@ build libvorbisfile.a: phony _deps/vorbis-build/lib/libvorbisfile.a
 
 build ogg: phony _deps/ogg-build/libogg.a
 
+build overflow: phony _deps/soundio-build/overflow
+
+build sio_list_devices: phony _deps/soundio-build/sio_list_devices
+
+build sio_microphone: phony _deps/soundio-build/sio_microphone
+
+build sio_record: phony _deps/soundio-build/sio_record
+
+build sio_sine: phony _deps/soundio-build/sio_sine
+
 build test_bitwise: phony _deps/ogg-build/test_bitwise
 
 build test_framing: phony _deps/ogg-build/test_framing
+
+build underflow: phony _deps/soundio-build/underflow
+
+build unit_tests: phony _deps/soundio-build/unit_tests
 
 build vorbis: phony _deps/vorbis-build/lib/libvorbis.a
 
@@ -1422,7 +2175,7 @@ build vorbisfile: phony _deps/vorbis-build/lib/libvorbisfile.a
 #############################################
 # Folder: /home/uros/dev/vorbis-compression/build
 
-build all: phony vorbis-compression _deps/ogg-build/all _deps/vorbis-build/all
+build all: phony vorbis-compression _deps/ogg-build/all _deps/vorbis-build/all _deps/soundio-build/all
 
 # =============================================================================
 
@@ -1430,6 +2183,13 @@ build all: phony vorbis-compression _deps/ogg-build/all _deps/vorbis-build/all
 # Folder: /home/uros/dev/vorbis-compression/build/_deps/ogg-build
 
 build _deps/ogg-build/all: phony _deps/ogg-build/libogg.a _deps/ogg-build/test_bitwise _deps/ogg-build/test_framing
+
+# =============================================================================
+
+#############################################
+# Folder: /home/uros/dev/vorbis-compression/build/_deps/soundio-build
+
+build _deps/soundio-build/all: phony _deps/soundio-build/libsoundio.so _deps/soundio-build/libsoundio.a _deps/soundio-build/sio_sine _deps/soundio-build/sio_list_devices _deps/soundio-build/sio_microphone _deps/soundio-build/sio_record _deps/soundio-build/unit_tests _deps/soundio-build/latency _deps/soundio-build/underflow _deps/soundio-build/backend_disconnect_recover _deps/soundio-build/overflow
 
 # =============================================================================
 
@@ -1459,14 +2219,14 @@ build _deps/vorbis-build/test/all: phony _deps/vorbis-build/test/vorbis_test
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | /home/uros/dev/vorbis-compression/CMakeLists.txt /home/uros/dev/vorbis-compression/include/ogg/config_types.h.in /usr/share/cmake-3.28/Modules/BasicConfigVersion-SameMajorVersion.cmake.in /usr/share/cmake-3.28/Modules/CMakeCInformation.cmake /usr/share/cmake-3.28/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.28/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.28/Modules/CMakePackageConfigHelpers.cmake /usr/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.28/Modules/CPack.cmake /usr/share/cmake-3.28/Modules/CPackComponent.cmake /usr/share/cmake-3.28/Modules/CTest.cmake /usr/share/cmake-3.28/Modules/CTestTargets.cmake /usr/share/cmake-3.28/Modules/CTestUseLaunchers.cmake /usr/share/cmake-3.28/Modules/CheckIncludeFile.cmake /usr/share/cmake-3.28/Modules/CheckIncludeFileCXX.cmake /usr/share/cmake-3.28/Modules/CheckIncludeFiles.cmake /usr/share/cmake-3.28/Modules/CheckLibraryExists.cmake /usr/share/cmake-3.28/Modules/CheckTypeSize.cmake /usr/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.28/Modules/Compiler/GNU-C.cmake /usr/share/cmake-3.28/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.28/Modules/Compiler/GNU.cmake /usr/share/cmake-3.28/Modules/DartConfiguration.tcl.in /usr/share/cmake-3.28/Modules/ExternalProject/shared_internal_commands.cmake /usr/share/cmake-3.28/Modules/FetchContent.cmake /usr/share/cmake-3.28/Modules/FetchContent/CMakeLists.cmake.in /usr/share/cmake-3.28/Modules/FindGit.cmake /usr/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake-3.28/Modules/FindPackageMessage.cmake /usr/share/cmake-3.28/Modules/FindPkgConfig.cmake /usr/share/cmake-3.28/Modules/GNUInstallDirs.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-Initialize.cmake /usr/share/cmake-3.28/Modules/Platform/Linux.cmake /usr/share/cmake-3.28/Modules/Platform/UnixPaths.cmake /usr/share/cmake-3.28/Modules/WriteBasicConfigVersionFile.cmake /usr/share/cmake-3.28/Templates/CPackConfig.cmake.in CMakeCache.txt CMakeFiles/3.28.3/CMakeCCompiler.cmake CMakeFiles/3.28.3/CMakeCXXCompiler.cmake CMakeFiles/3.28.3/CMakeSystem.cmake _deps/ogg-src/CMakeLists.txt _deps/ogg-src/cmake/CheckSizes.cmake _deps/ogg-src/cmake/OggConfig.cmake.in _deps/ogg-src/include/ogg/config_types.h.in _deps/ogg-src/ogg.pc.in _deps/vorbis-src/CMakeLists.txt _deps/vorbis-src/cmake/VorbisConfig.cmake.in _deps/vorbis-src/lib/CMakeLists.txt _deps/vorbis-src/test/CMakeLists.txt _deps/vorbis-src/vorbis.pc.in _deps/vorbis-src/vorbisenc.pc.in _deps/vorbis-src/vorbisfile.pc.in
+build build.ninja: RERUN_CMAKE | /home/uros/dev/vorbis-compression/CMakeLists.txt /home/uros/dev/vorbis-compression/include/ogg/config_types.h.in /usr/share/cmake-3.28/Modules/BasicConfigVersion-SameMajorVersion.cmake.in /usr/share/cmake-3.28/Modules/CMakeCInformation.cmake /usr/share/cmake-3.28/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.28/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.28/Modules/CMakePackageConfigHelpers.cmake /usr/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.28/Modules/CPack.cmake /usr/share/cmake-3.28/Modules/CPackComponent.cmake /usr/share/cmake-3.28/Modules/CTest.cmake /usr/share/cmake-3.28/Modules/CTestTargets.cmake /usr/share/cmake-3.28/Modules/CTestUseLaunchers.cmake /usr/share/cmake-3.28/Modules/CheckCSourceCompiles.cmake /usr/share/cmake-3.28/Modules/CheckIncludeFile.cmake /usr/share/cmake-3.28/Modules/CheckIncludeFileCXX.cmake /usr/share/cmake-3.28/Modules/CheckIncludeFiles.cmake /usr/share/cmake-3.28/Modules/CheckLibraryExists.cmake /usr/share/cmake-3.28/Modules/CheckTypeSize.cmake /usr/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.28/Modules/Compiler/GNU-C.cmake /usr/share/cmake-3.28/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.28/Modules/Compiler/GNU.cmake /usr/share/cmake-3.28/Modules/DartConfiguration.tcl.in /usr/share/cmake-3.28/Modules/ExternalProject/shared_internal_commands.cmake /usr/share/cmake-3.28/Modules/FetchContent.cmake /usr/share/cmake-3.28/Modules/FetchContent/CMakeLists.cmake.in /usr/share/cmake-3.28/Modules/FindALSA.cmake /usr/share/cmake-3.28/Modules/FindGit.cmake /usr/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake-3.28/Modules/FindPackageMessage.cmake /usr/share/cmake-3.28/Modules/FindPkgConfig.cmake /usr/share/cmake-3.28/Modules/FindThreads.cmake /usr/share/cmake-3.28/Modules/GNUInstallDirs.cmake /usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-Initialize.cmake /usr/share/cmake-3.28/Modules/Platform/Linux.cmake /usr/share/cmake-3.28/Modules/Platform/UnixPaths.cmake /usr/share/cmake-3.28/Modules/WriteBasicConfigVersionFile.cmake /usr/share/cmake-3.28/Templates/CPackConfig.cmake.in CMakeCache.txt CMakeFiles/3.28.3/CMakeCCompiler.cmake CMakeFiles/3.28.3/CMakeCXXCompiler.cmake CMakeFiles/3.28.3/CMakeSystem.cmake _deps/ogg-src/CMakeLists.txt _deps/ogg-src/cmake/CheckSizes.cmake _deps/ogg-src/cmake/OggConfig.cmake.in _deps/ogg-src/include/ogg/config_types.h.in _deps/ogg-src/ogg.pc.in _deps/soundio-src/CMakeLists.txt _deps/soundio-src/cmake/FindCoreAudio.cmake _deps/soundio-src/cmake/FindJACK.cmake _deps/soundio-src/cmake/FindPulseAudio.cmake _deps/soundio-src/cmake/FindWASAPI.cmake _deps/soundio-src/doc/doxygen.conf.in _deps/soundio-src/src/config.h.in _deps/vorbis-src/CMakeLists.txt _deps/vorbis-src/cmake/VorbisConfig.cmake.in _deps/vorbis-src/lib/CMakeLists.txt _deps/vorbis-src/test/CMakeLists.txt _deps/vorbis-src/vorbis.pc.in _deps/vorbis-src/vorbisenc.pc.in _deps/vorbis-src/vorbisfile.pc.in
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build /home/uros/dev/vorbis-compression/CMakeLists.txt /home/uros/dev/vorbis-compression/include/ogg/config_types.h.in /usr/share/cmake-3.28/Modules/BasicConfigVersion-SameMajorVersion.cmake.in /usr/share/cmake-3.28/Modules/CMakeCInformation.cmake /usr/share/cmake-3.28/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.28/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.28/Modules/CMakePackageConfigHelpers.cmake /usr/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.28/Modules/CPack.cmake /usr/share/cmake-3.28/Modules/CPackComponent.cmake /usr/share/cmake-3.28/Modules/CTest.cmake /usr/share/cmake-3.28/Modules/CTestTargets.cmake /usr/share/cmake-3.28/Modules/CTestUseLaunchers.cmake /usr/share/cmake-3.28/Modules/CheckIncludeFile.cmake /usr/share/cmake-3.28/Modules/CheckIncludeFileCXX.cmake /usr/share/cmake-3.28/Modules/CheckIncludeFiles.cmake /usr/share/cmake-3.28/Modules/CheckLibraryExists.cmake /usr/share/cmake-3.28/Modules/CheckTypeSize.cmake /usr/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.28/Modules/Compiler/GNU-C.cmake /usr/share/cmake-3.28/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.28/Modules/Compiler/GNU.cmake /usr/share/cmake-3.28/Modules/DartConfiguration.tcl.in /usr/share/cmake-3.28/Modules/ExternalProject/shared_internal_commands.cmake /usr/share/cmake-3.28/Modules/FetchContent.cmake /usr/share/cmake-3.28/Modules/FetchContent/CMakeLists.cmake.in /usr/share/cmake-3.28/Modules/FindGit.cmake /usr/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake-3.28/Modules/FindPackageMessage.cmake /usr/share/cmake-3.28/Modules/FindPkgConfig.cmake /usr/share/cmake-3.28/Modules/GNUInstallDirs.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-Initialize.cmake /usr/share/cmake-3.28/Modules/Platform/Linux.cmake /usr/share/cmake-3.28/Modules/Platform/UnixPaths.cmake /usr/share/cmake-3.28/Modules/WriteBasicConfigVersionFile.cmake /usr/share/cmake-3.28/Templates/CPackConfig.cmake.in CMakeCache.txt CMakeFiles/3.28.3/CMakeCCompiler.cmake CMakeFiles/3.28.3/CMakeCXXCompiler.cmake CMakeFiles/3.28.3/CMakeSystem.cmake _deps/ogg-src/CMakeLists.txt _deps/ogg-src/cmake/CheckSizes.cmake _deps/ogg-src/cmake/OggConfig.cmake.in _deps/ogg-src/include/ogg/config_types.h.in _deps/ogg-src/ogg.pc.in _deps/vorbis-src/CMakeLists.txt _deps/vorbis-src/cmake/VorbisConfig.cmake.in _deps/vorbis-src/lib/CMakeLists.txt _deps/vorbis-src/test/CMakeLists.txt _deps/vorbis-src/vorbis.pc.in _deps/vorbis-src/vorbisenc.pc.in _deps/vorbis-src/vorbisfile.pc.in: phony
+build /home/uros/dev/vorbis-compression/CMakeLists.txt /home/uros/dev/vorbis-compression/include/ogg/config_types.h.in /usr/share/cmake-3.28/Modules/BasicConfigVersion-SameMajorVersion.cmake.in /usr/share/cmake-3.28/Modules/CMakeCInformation.cmake /usr/share/cmake-3.28/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.28/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.28/Modules/CMakePackageConfigHelpers.cmake /usr/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.28/Modules/CPack.cmake /usr/share/cmake-3.28/Modules/CPackComponent.cmake /usr/share/cmake-3.28/Modules/CTest.cmake /usr/share/cmake-3.28/Modules/CTestTargets.cmake /usr/share/cmake-3.28/Modules/CTestUseLaunchers.cmake /usr/share/cmake-3.28/Modules/CheckCSourceCompiles.cmake /usr/share/cmake-3.28/Modules/CheckIncludeFile.cmake /usr/share/cmake-3.28/Modules/CheckIncludeFileCXX.cmake /usr/share/cmake-3.28/Modules/CheckIncludeFiles.cmake /usr/share/cmake-3.28/Modules/CheckLibraryExists.cmake /usr/share/cmake-3.28/Modules/CheckTypeSize.cmake /usr/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.28/Modules/Compiler/GNU-C.cmake /usr/share/cmake-3.28/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.28/Modules/Compiler/GNU.cmake /usr/share/cmake-3.28/Modules/DartConfiguration.tcl.in /usr/share/cmake-3.28/Modules/ExternalProject/shared_internal_commands.cmake /usr/share/cmake-3.28/Modules/FetchContent.cmake /usr/share/cmake-3.28/Modules/FetchContent/CMakeLists.cmake.in /usr/share/cmake-3.28/Modules/FindALSA.cmake /usr/share/cmake-3.28/Modules/FindGit.cmake /usr/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake-3.28/Modules/FindPackageMessage.cmake /usr/share/cmake-3.28/Modules/FindPkgConfig.cmake /usr/share/cmake-3.28/Modules/FindThreads.cmake /usr/share/cmake-3.28/Modules/GNUInstallDirs.cmake /usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.28/Modules/Platform/Linux-Initialize.cmake /usr/share/cmake-3.28/Modules/Platform/Linux.cmake /usr/share/cmake-3.28/Modules/Platform/UnixPaths.cmake /usr/share/cmake-3.28/Modules/WriteBasicConfigVersionFile.cmake /usr/share/cmake-3.28/Templates/CPackConfig.cmake.in CMakeCache.txt CMakeFiles/3.28.3/CMakeCCompiler.cmake CMakeFiles/3.28.3/CMakeCXXCompiler.cmake CMakeFiles/3.28.3/CMakeSystem.cmake _deps/ogg-src/CMakeLists.txt _deps/ogg-src/cmake/CheckSizes.cmake _deps/ogg-src/cmake/OggConfig.cmake.in _deps/ogg-src/include/ogg/config_types.h.in _deps/ogg-src/ogg.pc.in _deps/soundio-src/CMakeLists.txt _deps/soundio-src/cmake/FindCoreAudio.cmake _deps/soundio-src/cmake/FindJACK.cmake _deps/soundio-src/cmake/FindPulseAudio.cmake _deps/soundio-src/cmake/FindWASAPI.cmake _deps/soundio-src/doc/doxygen.conf.in _deps/soundio-src/src/config.h.in _deps/vorbis-src/CMakeLists.txt _deps/vorbis-src/cmake/VorbisConfig.cmake.in _deps/vorbis-src/lib/CMakeLists.txt _deps/vorbis-src/test/CMakeLists.txt _deps/vorbis-src/vorbis.pc.in _deps/vorbis-src/vorbisenc.pc.in _deps/vorbis-src/vorbisfile.pc.in: phony
 
 
 #############################################

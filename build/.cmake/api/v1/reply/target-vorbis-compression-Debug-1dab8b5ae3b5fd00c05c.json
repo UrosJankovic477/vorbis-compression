@@ -14,6 +14,7 @@
 			"link_directories",
 			"target_link_libraries",
 			"add_compile_options",
+			"add_compile_definitions",
 			"include_directories"
 		],
 		"files" : 
@@ -29,19 +30,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 61,
+				"line" : 73,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 59,
+				"line" : 70,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 62,
+				"line" : 74,
 				"parent" : 0
 			},
 			{
@@ -56,13 +57,19 @@
 			{
 				"command" : 3,
 				"file" : 0,
-				"line" : 60,
+				"line" : 72,
 				"parent" : 0
 			},
 			{
 				"command" : 4,
 				"file" : 0,
-				"line" : 58,
+				"line" : 71,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 69,
 				"parent" : 0
 			}
 		]
@@ -98,76 +105,87 @@
 				{
 					"backtrace" : 6,
 					"fragment" : "-pthread"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-ggdb"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 7,
+					"define" : "_USE_MATH_DEFINES"
 				}
 			],
 			"includes" : 
 			[
 				{
-					"backtrace" : 7,
+					"backtrace" : 8,
 					"path" : "/home/uros/dev/vorbis-compression/include"
 				},
 				{
-					"backtrace" : 7,
+					"backtrace" : 8,
 					"path" : "/usr/include/gtk-4.0"
 				},
 				{
-					"backtrace" : 7,
+					"backtrace" : 8,
 					"path" : "/usr/include/pango-1.0"
 				},
 				{
-					"backtrace" : 7,
+					"backtrace" : 8,
 					"path" : "/usr/include/glib-2.0"
 				},
 				{
-					"backtrace" : 7,
+					"backtrace" : 8,
 					"path" : "/usr/lib/x86_64-linux-gnu/glib-2.0/include"
 				},
 				{
-					"backtrace" : 7,
+					"backtrace" : 8,
 					"path" : "/usr/include/harfbuzz"
 				},
 				{
-					"backtrace" : 7,
+					"backtrace" : 8,
 					"path" : "/usr/include/freetype2"
 				},
 				{
-					"backtrace" : 7,
+					"backtrace" : 8,
 					"path" : "/usr/include/libpng16"
 				},
 				{
-					"backtrace" : 7,
+					"backtrace" : 8,
 					"path" : "/usr/include/libmount"
 				},
 				{
-					"backtrace" : 7,
+					"backtrace" : 8,
 					"path" : "/usr/include/blkid"
 				},
 				{
-					"backtrace" : 7,
+					"backtrace" : 8,
 					"path" : "/usr/include/fribidi"
 				},
 				{
-					"backtrace" : 7,
+					"backtrace" : 8,
 					"path" : "/usr/include/cairo"
 				},
 				{
-					"backtrace" : 7,
+					"backtrace" : 8,
 					"path" : "/usr/include/pixman-1"
 				},
 				{
-					"backtrace" : 7,
+					"backtrace" : 8,
 					"path" : "/usr/include/gdk-pixbuf-2.0"
 				},
 				{
-					"backtrace" : 7,
+					"backtrace" : 8,
 					"path" : "/usr/include/webp"
 				},
 				{
-					"backtrace" : 7,
+					"backtrace" : 8,
 					"path" : "/usr/include/graphene-1.0"
 				},
 				{
-					"backtrace" : 7,
+					"backtrace" : 8,
 					"path" : "/usr/lib/x86_64-linux-gnu/graphene-1.0/include"
 				},
 				{
@@ -232,6 +250,11 @@
 			},
 			{
 				"fragment" : "-Wl,-rpath,\"/home/uros/dev/vorbis-compression/src/*\"",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "-lsoundio",
 				"role" : "libraries"
 			},
 			{
@@ -367,6 +390,12 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
+			"path" : "src/audio-io/audio-io.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
 			"path" : "src/encoding/encoding.c",
 			"sourceGroupIndex" : 0
 		},
@@ -379,14 +408,13 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/logging/logging.c",
+			"path" : "src/main.c",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "src/main.c",
-			"sourceGroupIndex" : 0
+			"path" : "src/audio-io/audio-io.h",
+			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
@@ -401,11 +429,6 @@
 		{
 			"backtrace" : 1,
 			"path" : "src/gui/gui.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "src/logging/logging.h",
 			"sourceGroupIndex" : 1
 		}
 	],

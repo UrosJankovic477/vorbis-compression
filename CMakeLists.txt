@@ -69,6 +69,6 @@ file(
 include_directories(${CMAKE_SOURCE_DIR}/include ${GTK4_INCLUDE_DIRS})
 link_directories(${CMAKE_SOURCE_DIR}/src/*)
 add_compile_definitions(_USE_MATH_DEFINES)
-add_compile_options(-Wall -O0 ${GTK4_CFLAGS_OTHER} -ggdb)
+add_compile_options(-Wall -O3 ${GTK4_CFLAGS_OTHER} -ggdb)
 add_executable(${PROJECT_NAME} ${SOURCE_FILES} ${HEADER_FILES})
 target_link_libraries(${PROJECT_NAME} PRIVATE soundio ogg vorbis vorbisfile vorbisenc ${GTK4_LIBRARIES})

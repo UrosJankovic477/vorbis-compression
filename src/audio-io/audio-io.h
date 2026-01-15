@@ -8,10 +8,7 @@
 void    VcAudioIoInit(const char *vcPath);
 bool    VcAudioIoIsInitialized();
 bool    VcAudioIoTogglePlayback();
-void    VcAudioIoSetVolume(double _volume);
-void    VcAudioIoSeek(double timestamp);
 void    VcAudioIoFinalize();
-double  VcAudioIoGetTimestamp();
-double  VcAudioIoGetDuration();
+void    VcAudioIoReset();
 
 #endif // VC_AUDIO_IO_H

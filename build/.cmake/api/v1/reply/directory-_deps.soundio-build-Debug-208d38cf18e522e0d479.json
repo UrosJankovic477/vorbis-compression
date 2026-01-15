@@ -1,0 +1,233 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"build/_deps/soundio-src/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 236,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 246,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 249,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 265,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 276,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 287,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 298,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"_deps/soundio-build/libsoundio.so.2.0.0",
+				"_deps/soundio-build/libsoundio.so.2"
+			],
+			"targetId" : "libsoundio_shared::@bfb69c373aeb117f7cea",
+			"targetIndex" : 32,
+			"targetInstallNamelink" : "skip",
+			"type" : "target"
+		},
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"_deps/soundio-build/libsoundio.so"
+			],
+			"targetId" : "libsoundio_shared::@bfb69c373aeb117f7cea",
+			"targetIndex" : 32,
+			"targetInstallNamelink" : "only",
+			"type" : "target"
+		},
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"cxxModuleBmiTarget" : 
+			{
+				"id" : "libsoundio_shared::@bfb69c373aeb117f7cea",
+				"index" : 32
+			},
+			"destination" : "lib",
+			"type" : "cxxModuleBmi"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"_deps/soundio-build/libsoundio.a"
+			],
+			"targetId" : "libsoundio_static::@bfb69c373aeb117f7cea",
+			"targetIndex" : 33,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"cxxModuleBmiTarget" : 
+			{
+				"id" : "libsoundio_static::@bfb69c373aeb117f7cea",
+				"index" : 33
+			},
+			"destination" : "lib",
+			"type" : "cxxModuleBmi"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "include/soundio",
+			"paths" : 
+			[
+				"build/_deps/soundio-src/soundio/soundio.h",
+				"build/_deps/soundio-src/soundio/endian.h"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "Unspecified",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"_deps/soundio-build/sio_sine"
+			],
+			"targetId" : "sio_sine::@bfb69c373aeb117f7cea",
+			"targetIndex" : 39,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "Unspecified",
+			"cxxModuleBmiTarget" : 
+			{
+				"id" : "sio_sine::@bfb69c373aeb117f7cea",
+				"index" : 39
+			},
+			"destination" : "bin",
+			"type" : "cxxModuleBmi"
+		},
+		{
+			"backtrace" : 5,
+			"component" : "Unspecified",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"_deps/soundio-build/sio_list_devices"
+			],
+			"targetId" : "sio_list_devices::@bfb69c373aeb117f7cea",
+			"targetIndex" : 36,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 5,
+			"component" : "Unspecified",
+			"cxxModuleBmiTarget" : 
+			{
+				"id" : "sio_list_devices::@bfb69c373aeb117f7cea",
+				"index" : 36
+			},
+			"destination" : "bin",
+			"type" : "cxxModuleBmi"
+		},
+		{
+			"backtrace" : 6,
+			"component" : "Unspecified",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"_deps/soundio-build/sio_microphone"
+			],
+			"targetId" : "sio_microphone::@bfb69c373aeb117f7cea",
+			"targetIndex" : 37,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 6,
+			"component" : "Unspecified",
+			"cxxModuleBmiTarget" : 
+			{
+				"id" : "sio_microphone::@bfb69c373aeb117f7cea",
+				"index" : 37
+			},
+			"destination" : "bin",
+			"type" : "cxxModuleBmi"
+		},
+		{
+			"backtrace" : 7,
+			"component" : "Unspecified",
+			"destination" : "bin",
+			"paths" : 
+			[
+				"_deps/soundio-build/sio_record"
+			],
+			"targetId" : "sio_record::@bfb69c373aeb117f7cea",
+			"targetIndex" : 38,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 7,
+			"component" : "Unspecified",
+			"cxxModuleBmiTarget" : 
+			{
+				"id" : "sio_record::@bfb69c373aeb117f7cea",
+				"index" : 38
+			},
+			"destination" : "bin",
+			"type" : "cxxModuleBmi"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "_deps/soundio-build",
+		"source" : "build/_deps/soundio-src"
+	}
+}

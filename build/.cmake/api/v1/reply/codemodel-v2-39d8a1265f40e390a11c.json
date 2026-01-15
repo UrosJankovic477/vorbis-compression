@@ -9,25 +9,26 @@
 					"childIndexes" : 
 					[
 						1,
-						2
+						2,
+						5
 					],
 					"hasInstallRule" : true,
 					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
-						"string" : "3.15"
+						"string" : "3.14"
 					},
 					"projectIndex" : 0,
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						32
+						45
 					]
 				},
 				{
 					"build" : "_deps/ogg-build",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-_deps.ogg-build-Debug-d869a0789ecfaf6ca34d.json",
+					"jsonFile" : "directory-_deps.ogg-build-Debug-935da77903bade19c7ce.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.6"
@@ -37,9 +38,9 @@
 					"source" : "build/_deps/ogg-src",
 					"targetIndexes" : 
 					[
-						28,
-						29,
-						30
+						34,
+						40,
+						41
 					]
 				},
 				{
@@ -93,7 +94,7 @@
 				{
 					"build" : "_deps/vorbis-build/lib",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-_deps.vorbis-build.lib-Debug-a51f5e606fe8f2c09335.json",
+					"jsonFile" : "directory-_deps.vorbis-build.lib-Debug-7f8e5979d466559d8827.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.6"
@@ -103,9 +104,9 @@
 					"source" : "build/_deps/vorbis-src/lib",
 					"targetIndexes" : 
 					[
-						31,
-						34,
-						35
+						44,
+						47,
+						48
 					]
 				},
 				{
@@ -120,7 +121,35 @@
 					"source" : "build/_deps/vorbis-src/test",
 					"targetIndexes" : 
 					[
-						33
+						46
+					]
+				},
+				{
+					"build" : "_deps/soundio-build",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-_deps.soundio-build-Debug-208d38cf18e522e0d479.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "2.8.5"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 3,
+					"source" : "build/_deps/soundio-src",
+					"targetIndexes" : 
+					[
+						28,
+						29,
+						30,
+						31,
+						32,
+						33,
+						35,
+						36,
+						37,
+						38,
+						39,
+						42,
+						43
 					]
 				}
 			],
@@ -131,7 +160,8 @@
 					"childIndexes" : 
 					[
 						1,
-						2
+						2,
+						3
 					],
 					"directoryIndexes" : 
 					[
@@ -140,7 +170,7 @@
 					"name" : "vorbis-compression",
 					"targetIndexes" : 
 					[
-						32
+						45
 					]
 				},
 				{
@@ -152,9 +182,9 @@
 					"parentIndex" : 0,
 					"targetIndexes" : 
 					[
-						28,
-						29,
-						30
+						34,
+						40,
+						41
 					]
 				},
 				{
@@ -196,10 +226,34 @@
 						25,
 						26,
 						27,
+						44,
+						46,
+						47,
+						48
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						5
+					],
+					"name" : "libsoundio",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						28,
+						29,
+						30,
 						31,
+						32,
 						33,
-						34,
-						35
+						35,
+						36,
+						37,
+						38,
+						39,
+						42,
+						43
 					]
 				}
 			],
@@ -402,11 +456,88 @@
 					"projectIndex" : 2
 				},
 				{
+					"directoryIndex" : 5,
+					"id" : "backend_disconnect_recover::@bfb69c373aeb117f7cea",
+					"jsonFile" : "target-backend_disconnect_recover-Debug-bea26dab2f8f8f71bcf9.json",
+					"name" : "backend_disconnect_recover",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "coverage::@bfb69c373aeb117f7cea",
+					"jsonFile" : "target-coverage-Debug-76d6a82f4dc811af33a1.json",
+					"name" : "coverage",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "doc::@bfb69c373aeb117f7cea",
+					"jsonFile" : "target-doc-Debug-1f683867ef809b1615a2.json",
+					"name" : "doc",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "latency::@bfb69c373aeb117f7cea",
+					"jsonFile" : "target-latency-Debug-39efbfd6ea078c3f0573.json",
+					"name" : "latency",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "libsoundio_shared::@bfb69c373aeb117f7cea",
+					"jsonFile" : "target-libsoundio_shared-Debug-707d3f563f9ffb67c6cc.json",
+					"name" : "libsoundio_shared",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "libsoundio_static::@bfb69c373aeb117f7cea",
+					"jsonFile" : "target-libsoundio_static-Debug-81268406ca67dd3dbd69.json",
+					"name" : "libsoundio_static",
+					"projectIndex" : 3
+				},
+				{
 					"directoryIndex" : 1,
 					"id" : "ogg::@4e5ed7d02827854e35f8",
 					"jsonFile" : "target-ogg-Debug-890d68c330a0dc2b60d8.json",
 					"name" : "ogg",
 					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "overflow::@bfb69c373aeb117f7cea",
+					"jsonFile" : "target-overflow-Debug-53e5c4bc71fc8ceed977.json",
+					"name" : "overflow",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "sio_list_devices::@bfb69c373aeb117f7cea",
+					"jsonFile" : "target-sio_list_devices-Debug-f9cd79c7d65d17e40897.json",
+					"name" : "sio_list_devices",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "sio_microphone::@bfb69c373aeb117f7cea",
+					"jsonFile" : "target-sio_microphone-Debug-1d769e5501134a56b2f7.json",
+					"name" : "sio_microphone",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "sio_record::@bfb69c373aeb117f7cea",
+					"jsonFile" : "target-sio_record-Debug-5a019fb61bcdb6271bae.json",
+					"name" : "sio_record",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "sio_sine::@bfb69c373aeb117f7cea",
+					"jsonFile" : "target-sio_sine-Debug-3ef1c50906382495188d.json",
+					"name" : "sio_sine",
+					"projectIndex" : 3
 				},
 				{
 					"directoryIndex" : 1,
@@ -423,6 +554,20 @@
 					"projectIndex" : 1
 				},
 				{
+					"directoryIndex" : 5,
+					"id" : "underflow::@bfb69c373aeb117f7cea",
+					"jsonFile" : "target-underflow-Debug-b2a039d579ef6ba91cb3.json",
+					"name" : "underflow",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "unit_tests::@bfb69c373aeb117f7cea",
+					"jsonFile" : "target-unit_tests-Debug-ebf568ce31e6c2204c04.json",
+					"name" : "unit_tests",
+					"projectIndex" : 3
+				},
+				{
 					"directoryIndex" : 3,
 					"id" : "vorbis::@692b0ee2b61df6760d20",
 					"jsonFile" : "target-vorbis-Debug-2b7527d6fa54235703d0.json",
@@ -432,7 +577,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "vorbis-compression::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-vorbis-compression-Debug-181c17ba99732ff08b0f.json",
+					"jsonFile" : "target-vorbis-compression-Debug-1dab8b5ae3b5fd00c05c.json",
 					"name" : "vorbis-compression",
 					"projectIndex" : 0
 				},

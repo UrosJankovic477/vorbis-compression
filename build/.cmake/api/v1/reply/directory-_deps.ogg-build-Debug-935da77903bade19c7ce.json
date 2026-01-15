@@ -63,7 +63,7 @@
 				"_deps/ogg-build/libogg.a"
 			],
 			"targetId" : "ogg::@4e5ed7d02827854e35f8",
-			"targetIndex" : 28,
+			"targetIndex" : 34,
 			"type" : "target"
 		},
 		{
@@ -87,7 +87,7 @@
 			[
 				{
 					"id" : "ogg::@4e5ed7d02827854e35f8",
-					"index" : 28
+					"index" : 34
 				}
 			],
 			"paths" : 

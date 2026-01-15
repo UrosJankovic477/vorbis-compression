@@ -1,19 +1,15 @@
 #include "audio-io.h"
-#include "../logging/logging.h"
-#include "../common/common.h"
 #include <vorbis/vorbisfile.h>
 #include <string.h>
 #include <glib.h>
 #include <math.h>
 
 static OggVorbis_File   vf;
-static double           volume                      = 1.0;
 static GThread          *audioIoThread              = NULL;
 static GThread          *decoderThread              = NULL;
 static gboolean         initialized                 = false;
 static int              bitstream                   = 0;
 static gint             events                      = 0;
-static GMutex           volumeMutex;
 
 typedef enum
 {
@@ -21,7 +17,7 @@ typedef enum
     VC_AUDIO_IO_PAUSE   = 2,
     VC_AUDIO_IO_PLAY    = 4,
     VC_AUDIO_IO_STOP    = 8,
-    VC_AUDIO_IO_VOLUME  = 16,
+    VC_AUDIO_IO_RESET   = 16,
 
 } VcAudioIoEvents;
 
@@ -30,8 +26,22 @@ static struct SoundIoRingBuffer *rb = NULL;
 gpointer VcDecodeCallback(gpointer data)
 {
     char buffer[4092];
-    while (!(events & VC_AUDIO_IO_EOS))
+    char *writePtr;
+    struct SoundIoOutStream *outstream = (struct SoundIoOutStream *)data; 
+    while (!(g_atomic_int_get(&events) & VC_AUDIO_IO_STOP))
     {
+        if ((g_atomic_int_get(&events) & VC_AUDIO_IO_RESET))
+        {
+            writePtr = soundio_ring_buffer_write_ptr(rb);
+            int bytesToSet = soundio_ring_buffer_free_count(rb);
+            memset(writePtr, 0, bytesToSet);
+            soundio_outstream_pause(outstream, true);
+            g_atomic_int_set(&events, (VC_AUDIO_IO_PAUSE));
+            ov_time_seek(&vf, 0);
+            soundio_ring_buffer_clear(rb);
+            soundio_outstream_clear_buffer(outstream);
+        }
+        
         int bytesAvailable = soundio_ring_buffer_free_count(rb);
         int length = 4092 < bytesAvailable ? 4092 : bytesAvailable;
         long nBytes = ov_read(&vf, buffer, length, 0, 2, 1, &bitstream);
@@ -41,7 +51,12 @@ gpointer VcDecodeCallback(gpointer data)
         }
         else if (nBytes > 0)
         {
-            char *writePtr = soundio_ring_buffer_write_ptr(rb);
+            writePtr = soundio_ring_buffer_write_ptr(rb);
+            if (writePtr == NULL)
+            {
+                return NULL;
+            }
+            
             memcpy(writePtr, buffer, nBytes);
             if (nBytes < bytesAvailable)
             {
@@ -51,8 +66,6 @@ gpointer VcDecodeCallback(gpointer data)
             soundio_ring_buffer_advance_write_ptr(rb, nBytes);
         }
     }
-
-    ov_clear(&vf);
 
     return NULL;
 }
@@ -69,13 +82,13 @@ static void VcAudioIoWriteCallback
     int framesLeft = frameCountMax;
     int error;
 
-    while(framesLeft > 0 && !(g_atomic_int_get(&events) & VC_AUDIO_IO_EOS)) {
+    while(framesLeft > 0 && !((g_atomic_int_get(&events) & VC_AUDIO_IO_EOS))) {
 
         int frameCount = framesLeft;
 
         if ((error = soundio_outstream_begin_write(outstream, &areas, &frameCount))) 
         {
-            VcPushLogMessage(soundio_strerror(error), VC_LOG_ERROR);
+            g_error(soundio_strerror(error));
             return;
         }
 
@@ -111,8 +124,7 @@ static void VcAudioIoWriteCallback
         
         if ((error = soundio_outstream_end_write(outstream))) 
         {
-            VcPushLogMessage(soundio_strerror(error), VC_LOG_ERROR);
-            VcReadLogQueue();
+            g_error(soundio_strerror(error));
             return;
         }
         
@@ -128,12 +140,12 @@ gpointer VcInitAudioIoCallback(gpointer data)
     vorbis_info *info = (vorbis_info *)data;
     struct SoundIo *soundio = soundio_create();
     if (!soundio) {
-        VcPushLogMessage("failed to create sound io sturct", VC_LOG_ERROR);
+        g_error("failed to create sound io sturct");
         return NULL;
     }
 
     if ((error = soundio_connect(soundio))) {
-        VcPushLogMessage(soundio_strerror(error), VC_LOG_ERROR);
+        g_error(soundio_strerror(error));
         return NULL;
     }
 
@@ -141,19 +153,17 @@ gpointer VcInitAudioIoCallback(gpointer data)
 
     int default_out_device_index = soundio_default_output_device_index(soundio);
     if (default_out_device_index < 0) {
-        VcPushLogMessage("no output device found", VC_LOG_ERROR);
+        g_error("no output device found");
         return NULL;
     }
 
     struct SoundIoDevice *device = soundio_get_output_device(soundio, default_out_device_index);
     if (!device) {
-        VcPushLogMessage("out of memory", VC_LOG_ERROR);
+        g_error("couldn't get output device");
         return NULL;
     }
 
-    char message[VC_LOG_MSG_MAXLEN] = { 0 };
-    snprintf(message, VC_LOG_MSG_MAXLEN, "Output Audio Device: %s", device->name);
-    VcPushLogMessage(message, VC_LOG_INFO);
+    g_log(G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "Output Audio Device: %s", device->name);
 
     struct SoundIoOutStream *outstream  = soundio_outstream_create(device);
     outstream->format                   = SoundIoFormatS16LE;
@@ -164,26 +174,23 @@ gpointer VcInitAudioIoCallback(gpointer data)
 
     if ((error = soundio_outstream_open(outstream))) 
     {
-        VcPushLogMessage(soundio_strerror(error), VC_LOG_ERROR);
-        VcReadLogQueue();
+        g_error(soundio_strerror(error));
         return NULL;
     }
 
     if (outstream->layout_error)
     {
-        VcPushLogMessage(soundio_strerror(outstream->layout_error), VC_LOG_ERROR);
-        VcReadLogQueue();
+        g_error(soundio_strerror(outstream->layout_error));
         return NULL;
     }
 
     g_atomic_int_set(&events, (VC_AUDIO_IO_PLAY));
 
     rb = soundio_ring_buffer_create(soundio, info->rate * 0.2);
-    decoderThread = g_thread_new("decoder", VcDecodeCallback, NULL);
+    decoderThread = g_thread_new("decoder", VcDecodeCallback, outstream);
         
     if ((error = soundio_outstream_start(outstream))) {
-        VcPushLogMessage(soundio_strerror(outstream->layout_error), VC_LOG_ERROR);
-        VcReadLogQueue();
+        soundio_strerror(outstream->layout_error);
         return NULL;
     }
 
@@ -207,16 +214,6 @@ gpointer VcInitAudioIoCallback(gpointer data)
         {
             soundio_outstream_pause(outstream, false);
         }
-
-        if (ev & VC_AUDIO_IO_VOLUME)
-        {
-            g_mutex_lock(&volumeMutex);
-            outstream->volume = volume;
-            g_mutex_unlock(&volumeMutex);
-            printf("%lf\n", volume);
-            g_atomic_int_xor(&events, VC_AUDIO_IO_VOLUME);
-        }
-
     }
 
     g_atomic_int_set(&events, 0);
@@ -232,53 +229,33 @@ gpointer VcInitAudioIoCallback(gpointer data)
 void VcAudioIoInit(const char *vcPath)
 {
     ov_fopen(vcPath, &vf);
-    g_mutex_init(&volumeMutex);
     audioIoThread = g_thread_new("audio-io", VcInitAudioIoCallback, ov_info(&vf, -1));
 }
 
 void VcAudioIoFinalize() 
 {
-    g_atomic_int_or(&events, VC_AUDIO_IO_STOP);
-
-    if (audioIoThread)
-    {
-        g_thread_join(audioIoThread);
-    }
+    g_atomic_int_set(&events, VC_AUDIO_IO_STOP);
 
     if (decoderThread)
     {
         g_thread_join(decoderThread);
     }
 
-    g_mutex_clear(&volumeMutex);
+    if (audioIoThread)
+    {
+        g_thread_join(audioIoThread);
+    }
+    
+    ov_clear(&vf);
     
     initialized = false;
     audioIoThread = NULL;
+    decoderThread = NULL;
 }
 
-double VcAudioIoGetTimestamp() 
-{ 
-    return ov_time_tell(&vf); 
-}
-
-double VcAudioIoGetDuration()
+void VcAudioIoReset()
 {
-    return ov_time_total(&vf, -1);
-}
-
-void VcAudioIoSetVolume(double _volume) 
-{
-    g_mutex_lock(&volumeMutex);
-    volume = _volume;
-    g_mutex_unlock(&volumeMutex);
-    g_atomic_int_or(&events, VC_AUDIO_IO_VOLUME);
-}
-
-void VcAudioIoSeek(double timestamp) 
-{
-    //g_mutex_lock(&updateMutex);
-    //ov_time_seek(&vf, timestamp);
-    //g_mutex_unlock(&updateMutex);
+    g_atomic_int_or(&events, VC_AUDIO_IO_RESET);
 }
 
 bool VcAudioIoIsInitialized() 
