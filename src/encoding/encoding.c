@@ -347,6 +347,8 @@ int VcEncode(VcEncodeOptions options)
     vorbis_dsp_clear(&vc_ctx.dsp);
     vorbis_comment_clear(&vc_ctx.comment);
     vorbis_info_clear(&vc_ctx.vi);
+
+    g_input_stream_close(options.pInFileStream, NULL, NULL);
     
     return 0;
 }

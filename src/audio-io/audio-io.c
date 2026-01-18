@@ -184,7 +184,7 @@ gpointer VcInitAudioIoCallback(gpointer data)
         return NULL;
     }
 
-    g_atomic_int_set(&events, (VC_AUDIO_IO_PLAY));
+    g_atomic_int_set(&events, (VC_AUDIO_IO_PAUSE));
 
     rb = soundio_ring_buffer_create(soundio, info->rate * 0.2);
     decoderThread = g_thread_new("decoder", VcDecodeCallback, outstream);

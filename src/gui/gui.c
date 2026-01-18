@@ -1,4 +1,5 @@
 #include "gui.h"
+#include "log-view.h"
 #include "../encoding/options.h"
 #include "../encoding/encoding.h"
 #include "../audio-io/audio-io.h"
@@ -11,6 +12,12 @@ static size_t           inputFileSize           = 0;
 static size_t           outputFileSize          = 0;
 static GtkWidget        *playbackButton         = NULL; 
 static GtkWidget        *stopButton             = NULL;
+static GtkWidget        *logView                = NULL;
+static GtkWidget        *chooseFileButton       = NULL;
+static GtkWidget        *convertButton          = NULL;
+static GtkTextBuffer    *textBuffer             = NULL;
+static GtkWidget        *spinner                = NULL;
+static GTimer           *timer                  = NULL;
 
 void VcToggleMediaControls(gboolean state)
 {
@@ -51,9 +58,16 @@ void VcOnInputFileDialogFinished(GObject *fileDialog, GAsyncResult *res, gpointe
     if (error != NULL)
     {
         g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, error->message);
+        VcLogViewWriteLine(GTK_TEXT_VIEW(logView), error->message);
         g_error_free(error);
         return;
     }
+
+    const char *path = g_file_get_path(G_FILE(inFile));
+    VcLogViewWriteLine(GTK_TEXT_VIEW(logView), "Selected file at %s", path);
+    free(path);
+
+    gtk_widget_set_sensitive(convertButton, true);
 
     g_file_read_async(inFile, G_PRIORITY_DEFAULT, NULL, VcFileReadFinished, NULL);
 }
@@ -85,11 +99,21 @@ void VcOnOutputFileDialogFinished(GObject *fileDialog, GAsyncResult *res, gpoint
     }
 
     vc_encodingOptions.pOutFileStream = outFileStream;
+    g_timer_start(timer);
     int status = VcEncode(vc_encodingOptions);
+    g_timer_stop(timer);
     if (status < 0)
     {
+        VcLogViewWriteLine(GTK_TEXT_VIEW(logView), "Encription failed!");
+        gtk_widget_set_sensitive(convertButton, true);
+        gtk_widget_set_sensitive(chooseFileButton, true);
         return;
     }
+
+    glong microseconds = 0;
+    gdouble seconds = g_timer_elapsed(timer, &microseconds);
+
+    VcLogViewWriteLine(GTK_TEXT_VIEW(logView), "Encription done! Elapsed time: %000.lf.%06ds", seconds, microseconds);
 
     GFileInfo *outFileInfo = g_file_output_stream_query_info(outFileStream, G_FILE_ATTRIBUTE_STANDARD_SIZE, NULL, &error);
     if (error != NULL)
@@ -107,25 +131,38 @@ void VcOnOutputFileDialogFinished(GObject *fileDialog, GAsyncResult *res, gpoint
 
     VcToggleMediaControls(true);
 
-    gtk_button_set_icon_name(playbackButton, "media-playback-pause");
+    gtk_button_set_icon_name(playbackButton, "media-playback-play");
     
     outputFileSize = g_file_info_get_size(outFileInfo);
     
     gtk_label_set_label(GTK_LABEL(outputFileLabel), outFilePath);
     if (inputFileSize != 0)
     {
-        char compressionRatioString[26] = { 0 };
-        snprintf(compressionRatioString, 26, "Compression rate: %3.2f%%", (float)(outputFileSize) / (float)(inputFileSize) * 100);
-        gtk_label_set_label(GTK_LABEL(compressionRateLabel), compressionRatioString);
+        VcLogViewWriteLine(GTK_TEXT_VIEW(logView), "Input size: %d bytes", inputFileSize);
+        VcLogViewWriteLine(GTK_TEXT_VIEW(logView), "Output size: %d bytes", outputFileSize);
+        VcLogViewWriteLine(GTK_TEXT_VIEW(logView), "Compression rate: %3.2f%%", (float)(outputFileSize) / (float)(inputFileSize) * 100);
+        VcLogViewWriteLine(GTK_TEXT_VIEW(logView), "Saved at %s", outFilePath);
         gtk_widget_set_visible(GTK_WIDGET(outputFileLabel), true);
     }
+
+    gtk_spinner_stop(GTK_SPINNER(spinner));
     
     g_log(G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "File encoded successfully.");
+
+    gtk_widget_set_sensitive(convertButton, true);
+    gtk_widget_set_sensitive(chooseFileButton, true);
+
+    g_output_stream_close(outFileStream, NULL, NULL);
+
+    free(outFilePath);
     
 }
 
 void VcOnConvertClicked(GtkFileDialog *outputFileDialog)
 {
+    gtk_spinner_start(GTK_SPINNER(spinner));
+    gtk_widget_set_sensitive(convertButton, false);
+    gtk_widget_set_sensitive(chooseFileButton, false);
     gtk_file_dialog_save(outputFileDialog, NULL, NULL, VcOnOutputFileDialogFinished, NULL);
 }
 
@@ -165,8 +202,7 @@ void VcOnStopButtonClick(GObject *button)
 void VcOnActivate(GtkApplication *app)
 {
     GtkWidget       *window             = gtk_application_window_new(app);
-    GtkWidget       *chooseFileButton   = gtk_button_new_with_label("Choose File");
-    GtkWidget       *convertButton      = gtk_button_new_with_label("Convert");
+    
     GtkFileFilter   *fileFilter         = gtk_file_filter_new();
     GtkFileDialog   *inputFileDialog    = gtk_file_dialog_new();
     GtkFileDialog   *outputFileDialog   = gtk_file_dialog_new();
@@ -178,47 +214,105 @@ void VcOnActivate(GtkApplication *app)
     inputFileLabel          = gtk_label_new("(no file selected)");
     outputFileLabel         = gtk_label_new("");
     compressionRateLabel    = gtk_label_new("");
+    chooseFileButton        = gtk_button_new_with_label("Choose File");
+    convertButton           = gtk_button_new_with_label("Convert");
+
+    gtk_widget_set_sensitive(convertButton, false);
+
+    gtk_widget_set_halign(inputFileLabel, GTK_ALIGN_START);
+    gtk_widget_set_halign(outputFileLabel, GTK_ALIGN_START);
 
     gtk_widget_set_visible(GTK_WIDGET(outputFileLabel), false);
 
     playbackButton  = gtk_button_new_from_icon_name("media-playback-start");
     stopButton      = gtk_button_new_from_icon_name("media-playback-stop");
+    textBuffer      = gtk_text_buffer_new(NULL);
+    logView         = gtk_text_view_new_with_buffer(textBuffer);
+    spinner         = gtk_spinner_new();
 
     VcToggleMediaControls(false);
  
     GtkWidget   *mainBox        = gtk_box_new(GTK_ORIENTATION_VERTICAL, 4);
     GtkWidget   *controlsBox    = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
     GtkWidget   *grid           = gtk_grid_new();
+    GtkWidget   *clearLogButton = gtk_button_new_with_label("Clear Log");
+    GtkWidget   *copyLogButton  = gtk_button_new_from_icon_name("edit-copy");
 
+    gtk_text_view_set_editable(logView, false);
+
+    gtk_widget_set_hexpand(copyLogButton, false);
+    gtk_widget_set_halign(copyLogButton, GTK_ALIGN_START);
+    gtk_widget_set_margin_top(copyLogButton, 20);
+    gtk_widget_set_margin_bottom(copyLogButton, 0);
+    gtk_widget_set_margin_start(copyLogButton, 10);
+    gtk_widget_set_tooltip_text(copyLogButton, "Copy log to the clipboard");
+
+    gtk_widget_add_css_class(clearLogButton, "destructive-action");
+    gtk_widget_add_css_class(convertButton, "suggested-action");
+
+    gtk_grid_set_column_homogeneous(GTK_GRID(grid), true);
     gtk_box_append(GTK_BOX(mainBox), grid);
     gtk_box_append(GTK_BOX(mainBox), controlsBox);
+
+    gtk_widget_set_margin_top(grid, 10);
+    gtk_widget_set_margin_start(grid, 10);
+    gtk_widget_set_margin_end(grid, 10);
+
+    gtk_widget_set_margin_start(controlsBox, 10);
+    gtk_widget_set_margin_end(controlsBox, 10);
+
+    gtk_widget_set_margin_top(clearLogButton, 2);
+    gtk_widget_set_margin_bottom(clearLogButton, 10);
+    gtk_widget_set_margin_start(clearLogButton, 10);
+    gtk_widget_set_margin_end(clearLogButton, 10);
+
     gtk_box_append(GTK_BOX(controlsBox), playbackButton);
     gtk_box_append(GTK_BOX(controlsBox), stopButton);
+    gtk_box_append(GTK_BOX(mainBox), copyLogButton);
+    gtk_box_append(GTK_BOX(mainBox), logView);
+    gtk_box_append(GTK_BOX(mainBox), clearLogButton);
+
+    gtk_widget_set_margin_top(logView, 10);
+    gtk_widget_set_margin_bottom(logView, 0);
+    gtk_widget_set_margin_start(logView, 10);
+    gtk_widget_set_margin_end(logView, 10);
+    
+    gtk_grid_set_column_spacing(GTK_GRID(grid), 20);
+    gtk_grid_set_row_spacing(GTK_GRID(grid), 10);
+
+    gtk_widget_set_vexpand(logView, true);
+    gtk_widget_set_margin_bottom(logView, 10);
 
     gtk_window_set_child(GTK_WINDOW(window), mainBox);
 
-    gtk_grid_attach(GTK_GRID(grid), chooseFileButton, 0, 0, 1, 1);
-    gtk_grid_attach(GTK_GRID(grid), convertButton, 0, 2, 1, 1);
-    gtk_grid_attach(GTK_GRID(grid), inputFileLabel, 0, 1, 3, 1);
-    gtk_grid_attach(GTK_GRID(grid), outputFileLabel, 0, 3, 3, 1);
-    gtk_grid_attach(GTK_GRID(grid), compressionRateLabel, 0, 4, 1, 1);
+    gtk_grid_attach(GTK_GRID(grid), chooseFileButton, 1, 0, 1, 1);
+    gtk_grid_attach(GTK_GRID(grid), inputFileLabel, 2, 0, 3, 1);
+    gtk_grid_attach(GTK_GRID(grid), convertButton, 1, 2, 1, 1);
+    gtk_grid_attach(GTK_GRID(grid), spinner, 2, 2, 1, 1);
+    gtk_grid_attach(GTK_GRID(grid), outputFileLabel, 2, 2, 3, 1);
+    gtk_grid_attach(GTK_GRID(grid), compressionRateLabel, 1, 3, 1, 1);
     
+    g_signal_connect_swapped(clearLogButton, "clicked", G_CALLBACK(VcLogViewClear), logView);
     g_signal_connect_swapped(chooseFileButton, "clicked", G_CALLBACK(VcOnOpenFileClicked), inputFileDialog);
     g_signal_connect_swapped(convertButton, "clicked", G_CALLBACK(VcOnConvertClicked), outputFileDialog);
     g_signal_connect_swapped(playbackButton, "clicked", G_CALLBACK(VcOnPlaybackButtonClick), playbackButton);
     g_signal_connect_swapped(stopButton, "clicked", G_CALLBACK(VcOnStopButtonClick), stopButton);
+    g_signal_connect_swapped(copyLogButton, "clicked", G_CALLBACK(VcLogViewCopy), logView);
     
     gtk_window_present(GTK_WINDOW(window));
 }
 
 int VcRunApp(int argc, char** argv)
 {
+    timer = g_timer_new();
 
     GtkApplication *app = gtk_application_new("vc.app", G_APPLICATION_DEFAULT_FLAGS);
     g_signal_connect(app, "activate", G_CALLBACK(VcOnActivate), NULL);
 
     int status = g_application_run(G_APPLICATION(app), argc, argv);
     VcAudioIoFinalize();
+
+    g_timer_destroy(timer);
 
     return status;
 }
