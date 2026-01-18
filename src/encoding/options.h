@@ -7,9 +7,11 @@
 
 typedef struct 
 {
-    GFileInputStream *pInFileStream;
-    GFileOutputStream *pOutFileStream;
-    float fDesiredQuality;
+    GFileInputStream    *pInFileStream;
+    GFileOutputStream   *pOutFileStream;
+    GtkTextView         *pLogView;
+    GSourceFunc         cbOnFinished;
+    float               fDesiredQuality;
 
 } VcEncodeOptions;
 

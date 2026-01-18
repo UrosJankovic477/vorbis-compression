@@ -66,19 +66,19 @@
 			[
 				{
 					"backtrace" : 4,
-					"path" : "/home/uros/dev/vorbis-compression/build/_deps/soundio-src"
+					"path" : "/home/uros/projects/vorbis-compression/build/_deps/soundio-src"
 				},
 				{
 					"backtrace" : 4,
-					"path" : "/home/uros/dev/vorbis-compression/build/_deps/soundio-build"
+					"path" : "/home/uros/projects/vorbis-compression/build/_deps/soundio-build"
 				},
 				{
 					"backtrace" : 4,
-					"path" : "/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test"
+					"path" : "/home/uros/projects/vorbis-compression/build/_deps/soundio-src/test"
 				},
 				{
 					"backtrace" : 4,
-					"path" : "/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src"
+					"path" : "/home/uros/projects/vorbis-compression/build/_deps/soundio-src/src"
 				}
 			],
 			"language" : "C",
@@ -123,7 +123,7 @@
 				"role" : "flags"
 			},
 			{
-				"fragment" : "-Wl,-rpath,/home/uros/dev/vorbis-compression/build/_deps/soundio-build:",
+				"fragment" : "-Wl,-rpath,/home/uros/projects/vorbis-compression/build/_deps/soundio-build:",
 				"role" : "libraries"
 			},
 			{

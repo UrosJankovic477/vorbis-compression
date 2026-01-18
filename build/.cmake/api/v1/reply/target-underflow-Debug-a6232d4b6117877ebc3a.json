@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "_deps/soundio-build/sio_record"
+			"path" : "_deps/soundio-build/underflow"
 		}
 	],
 	"backtrace" : 1,
@@ -11,7 +11,6 @@
 		"commands" : 
 		[
 			"add_executable",
-			"install",
 			"target_link_libraries",
 			"include_directories"
 		],
@@ -27,23 +26,17 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 289,
+				"line" : 317,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 298,
+				"line" : 322,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
-				"file" : 0,
-				"line" : 294,
-				"parent" : 0
-			},
-			{
-				"command" : 3,
 				"file" : 0,
 				"line" : 183,
 				"parent" : 0
@@ -65,20 +58,20 @@
 			"includes" : 
 			[
 				{
-					"backtrace" : 4,
-					"path" : "/home/uros/dev/vorbis-compression/build/_deps/soundio-src"
+					"backtrace" : 3,
+					"path" : "/home/uros/projects/vorbis-compression/build/_deps/soundio-src"
 				},
 				{
-					"backtrace" : 4,
-					"path" : "/home/uros/dev/vorbis-compression/build/_deps/soundio-build"
+					"backtrace" : 3,
+					"path" : "/home/uros/projects/vorbis-compression/build/_deps/soundio-build"
 				},
 				{
-					"backtrace" : 4,
-					"path" : "/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test"
+					"backtrace" : 3,
+					"path" : "/home/uros/projects/vorbis-compression/build/_deps/soundio-src/test"
 				},
 				{
-					"backtrace" : 4,
-					"path" : "/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src"
+					"backtrace" : 3,
+					"path" : "/home/uros/projects/vorbis-compression/build/_deps/soundio-src/src"
 				}
 			],
 			"language" : "C",
@@ -91,25 +84,11 @@
 	"dependencies" : 
 	[
 		{
-			"backtrace" : 3,
+			"backtrace" : 2,
 			"id" : "libsoundio_shared::@bfb69c373aeb117f7cea"
 		}
 	],
-	"id" : "sio_record::@bfb69c373aeb117f7cea",
-	"install" : 
-	{
-		"destinations" : 
-		[
-			{
-				"backtrace" : 2,
-				"path" : "bin"
-			}
-		],
-		"prefix" : 
-		{
-			"path" : "/usr/local"
-		}
-	},
+	"id" : "underflow::@bfb69c373aeb117f7cea",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -123,12 +102,17 @@
 				"role" : "flags"
 			},
 			{
-				"fragment" : "-Wl,-rpath,/home/uros/dev/vorbis-compression/build/_deps/soundio-build:",
+				"fragment" : "-Wl,-rpath,/home/uros/projects/vorbis-compression/build/_deps/soundio-build",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 2,
 				"fragment" : "_deps/soundio-build/libsoundio.so.2.0.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lm",
 				"role" : "libraries"
 			},
 			{
@@ -142,8 +126,8 @@
 		],
 		"language" : "C"
 	},
-	"name" : "sio_record",
-	"nameOnDisk" : "sio_record",
+	"name" : "underflow",
+	"nameOnDisk" : "underflow",
 	"paths" : 
 	{
 		"build" : "_deps/soundio-build",
@@ -164,7 +148,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "build/_deps/soundio-src/example/sio_record.c",
+			"path" : "build/_deps/soundio-src/test/underflow.c",
 			"sourceGroupIndex" : 0
 		}
 	],

@@ -64,19 +64,19 @@
 			[
 				{
 					"backtrace" : 4,
-					"path" : "/home/uros/dev/vorbis-compression/build/_deps/vorbis-src/include"
+					"path" : "/home/uros/projects/vorbis-compression/build/_deps/vorbis-src/include"
 				},
 				{
 					"backtrace" : 4,
-					"path" : "/home/uros/dev/vorbis-compression/build/_deps/vorbis-src/lib"
+					"path" : "/home/uros/projects/vorbis-compression/build/_deps/vorbis-src/lib"
 				},
 				{
 					"backtrace" : 3,
-					"path" : "/home/uros/dev/vorbis-compression/build/_deps/ogg-src/include"
+					"path" : "/home/uros/projects/vorbis-compression/build/_deps/ogg-src/include"
 				},
 				{
 					"backtrace" : 3,
-					"path" : "/home/uros/dev/vorbis-compression/build/_deps/ogg-build/include"
+					"path" : "/home/uros/projects/vorbis-compression/build/_deps/ogg-build/include"
 				}
 			],
 			"language" : "C",

@@ -1,4 +1,5 @@
 #include "encoding.h"
+#include "../gui/log-view.h"
 #include <stdio.h>
 #include <vorbis/codec.h>
 #include <vorbis/vorbisenc.h>
@@ -13,7 +14,14 @@ typedef enum
     VC_WAVE_FORMAT_MULAW        = 7,
     VC_WAVE_FORMAT_EXTENSIBLE   = 0xfffe
 
-} VC_WaveFormat;
+} VcWaveFormat;
+
+typedef struct
+{
+    uint16_t    wFormatTag;
+    uint8_t     padding[14];
+
+} VcWaveSubFormat;
 
 typedef struct
 {
@@ -24,7 +32,7 @@ typedef struct
 	uint16_t        nBlockAlign;
 	uint16_t        wBitsPerSample;
 
-} VC_WaveHeaderCommon;
+} VcWaveHeaderCommon;
 
 typedef struct 
 {
@@ -34,7 +42,7 @@ typedef struct
     
     // Input file data
     uint32_t            nDataSize;
-    VC_WaveHeaderCommon common;
+    VcWaveHeaderCommon  common;
 
     // Ogg vorbis structures
     vorbis_info         vi;
@@ -45,75 +53,127 @@ typedef struct
     ogg_packet          packet;
     ogg_page            page;
 
-} VC_EncodingContext;
+} VcEncodingContext;
 
-static VC_EncodingContext vc_ctx = { 0 };
-static uint8_t vc_read_buffer[VC_BUFFER_SIZE];
+static VcEncodingContext vcCtx = { 0 };
+static uint8_t vcReadBuffer[VC_BUFFER_SIZE];
+static GThread *encoderThread = NULL;
 
-int VC_ReadHeader()
+int VcReadHeader(GtkTextView *logView)
 {
+    VcLogViewWriteLine(logView, "Reading header...");
+
     GError *error = NULL;
-    g_seekable_seek(G_SEEKABLE(vc_ctx.pInfile), 20, G_SEEK_SET, NULL, &error);
+    size_t nBytes;
+    g_seekable_seek(G_SEEKABLE(vcCtx.pInfile), 20, G_SEEK_SET, NULL, &error);
     if (error != NULL)
     {
         g_error(error->message);
+        VcLogViewWriteLine(logView, error->message);
         return -1;
     }
-    size_t nBytes = g_input_stream_read(G_INPUT_STREAM(vc_ctx.pInfile), &vc_ctx.common, 16, NULL, &error);
+
+    nBytes = g_input_stream_read(G_INPUT_STREAM(vcCtx.pInfile), &vcCtx.common, 16, NULL, &error);
     if (error != NULL || nBytes < 16)
     {
-        g_error(error->message);
+        if (error)
+        {
+            g_error(error->message);
+            VcLogViewWriteLine(logView, error->message);
+        }
+
+        else
+        {
+            g_error("Failed to read header");
+            VcLogViewWriteLine(logView, "Failed to read header");
+        }
+        
+        
         return -1;
     }
 
-    g_seekable_seek(G_SEEKABLE(vc_ctx.pInfile), 40, G_SEEK_SET, NULL, &error);
+    if (vcCtx.common.wFormatTag == VC_WAVE_FORMAT_EXTENSIBLE)
+    {
+        g_seekable_seek(G_SEEKABLE(vcCtx.pInfile), 8, G_SEEK_CUR, NULL, &error);
+        VcWaveSubFormat subFormat;
+        nBytes = g_input_stream_read(G_INPUT_STREAM(vcCtx.pInfile), &subFormat, 16, NULL, &error);
+        if (error != NULL)
+        {
+            g_error(error->message);
+            VcLogViewWriteLine(logView, error->message);
+            return -1;
+        }
+
+        vcCtx.common.wFormatTag = subFormat.wFormatTag;
+    }
+    
+    else if (vcCtx.common.wFormatTag == VC_WAVE_FORMAT_PCM)
+    {
+        g_seekable_seek(G_SEEKABLE(vcCtx.pInfile), 40, G_SEEK_SET, NULL, &error);
+    }
+
+    else
+    {
+        VcLogViewWriteLine(logView, "Format not recognized");
+        return -1;
+        
+    }
+    
+    
     if (error != NULL)
     {
         g_error(error->message);
+        VcLogViewWriteLine(logView, error->message);
         return -1;
     }
 
-    nBytes = g_input_stream_read(G_INPUT_STREAM(vc_ctx.pInfile), &vc_ctx.nDataSize, 4, NULL, &error);
+    nBytes = g_input_stream_read(G_INPUT_STREAM(vcCtx.pInfile), &vcCtx.nDataSize, 4, NULL, &error);
     if (nBytes < 4)
     {
         g_error(error->message);
+        VcLogViewWriteLine(logView, error->message);
         return -1;
     }
+
+    VcLogViewWriteLine(logView, "Header processed:");
+    VcLogViewWriteLine(logView, "Number of channels: %d", vcCtx.common.nChannels);
+    VcLogViewWriteLine(logView, "Bits per sample: %d", vcCtx.common.wBitsPerSample);
+    VcLogViewWriteLine(logView, "Sample rate: %d", vcCtx.common.nSamplesPerSec);
 
     return 0;
 }
 
-void VC_WriteBufferPCM(size_t n_bytes)
+void VcWriteBufferPCM(size_t n_bytes)
 {
-    float **channels = vorbis_analysis_buffer(&vc_ctx.dsp, VC_BUFFER_SIZE);
-    uint16_t bytesPerSample = vc_ctx.common.wBitsPerSample / 8;
-    uint16_t stride = bytesPerSample * vc_ctx.common.nChannels;
+    float **channels = vorbis_analysis_buffer(&vcCtx.dsp, VC_BUFFER_SIZE);
+    uint16_t bytesPerSample = vcCtx.common.wBitsPerSample / 8;
+    uint16_t stride = bytesPerSample * vcCtx.common.nChannels;
     for(size_t i = 0; i < n_bytes / stride; i++)
     {
-        for (size_t ch = 0; ch < vc_ctx.common.nChannels; ch++)
+        for (size_t ch = 0; ch < vcCtx.common.nChannels; ch++)
         {
             switch (bytesPerSample)
             {
                 case 1:
                 {
-                    uint8_t sample = (uint8_t) (vc_read_buffer[i * stride + ch]);
+                    uint8_t sample = (uint8_t) (vcReadBuffer[i * stride + ch]);
                     channels[ch][i] = sample / 256.0f;
                     break;
                 }
 
                 case 2:
                 {
-                    uint16_t sample = (((uint16_t) vc_read_buffer[i * stride + ch * bytesPerSample]) 
-                    | ((uint16_t) vc_read_buffer[i * stride + ch * bytesPerSample + 1] << 8));
+                    uint16_t sample = (((uint16_t) vcReadBuffer[i * stride + ch * bytesPerSample]) 
+                    | ((uint16_t) vcReadBuffer[i * stride + ch * bytesPerSample + 1] << 8));
                     channels[ch][i] = ((int16_t) sample) / 32768.0f;
                     break;
                 }
 
                 case 3:
                 {
-                    uint32_t sample = (((uint32_t) vc_read_buffer[i * stride + ch * bytesPerSample]) 
-                    | ((uint32_t) vc_read_buffer[i * stride + ch * bytesPerSample + 1] << 8)
-                    | ((uint32_t) vc_read_buffer[i * stride + ch * bytesPerSample + 2] << 16));
+                    uint32_t sample = (((uint32_t) vcReadBuffer[i * stride + ch * bytesPerSample]) 
+                    | ((uint32_t) vcReadBuffer[i * stride + ch * bytesPerSample + 1] << 8)
+                    | ((uint32_t) vcReadBuffer[i * stride + ch * bytesPerSample + 2] << 16));
                     sample &= 0x00ffffff;
                     sample |= 0xff000000 * ((sample & 0x00800000) != 0);  // checks if 24th bit is 1 and ors highest byte with 0xff if true
                     channels[ch][i] = ((int32_t) sample) / 8388608.0f;
@@ -122,10 +182,10 @@ void VC_WriteBufferPCM(size_t n_bytes)
 
                 case 4:
                 {
-                    uint32_t sample = (((uint32_t) vc_read_buffer[i * stride + ch * bytesPerSample]) 
-                    | ((uint32_t) vc_read_buffer[i * stride + ch * bytesPerSample + 1] << 8)
-                    | ((uint32_t) vc_read_buffer[i * stride + ch * bytesPerSample + 2] << 16)
-                    | ((uint32_t) vc_read_buffer[i * stride + ch * bytesPerSample + 3] << 24));
+                    uint32_t sample = (((uint32_t) vcReadBuffer[i * stride + ch * bytesPerSample]) 
+                    | ((uint32_t) vcReadBuffer[i * stride + ch * bytesPerSample + 1] << 8)
+                    | ((uint32_t) vcReadBuffer[i * stride + ch * bytesPerSample + 2] << 16)
+                    | ((uint32_t) vcReadBuffer[i * stride + ch * bytesPerSample + 3] << 24));
                     channels[ch][i] = ((int32_t) sample) / 2147483648.0;
                     break;
                 }
@@ -136,49 +196,73 @@ void VC_WriteBufferPCM(size_t n_bytes)
         }
         
     }
-    vorbis_analysis_wrote(&vc_ctx.dsp, n_bytes / stride);
+    vorbis_analysis_wrote(&vcCtx.dsp, n_bytes / stride);
 }
 
-void VC_WriteBufferFloat(size_t n_bytes)
+void VcWriteBufferFloat(size_t n_bytes)
+{
+    float **channels = vorbis_analysis_buffer(&vcCtx.dsp, VC_BUFFER_SIZE);
+    uint16_t bytesPerSample = vcCtx.common.wBitsPerSample / 8;
+    uint16_t stride = bytesPerSample * vcCtx.common.nChannels;
+
+    for(size_t i = 0; i < n_bytes / stride; i++)
+    {
+        for (size_t ch = 0; ch < vcCtx.common.nChannels; ch++)
+        {
+            if (bytesPerSample == 4)
+            {
+                float sample = ((float) vcReadBuffer[i * stride + ch * bytesPerSample]);
+                channels[ch][i] = sample;
+            }
+
+            else if (bytesPerSample == 8)
+            {
+                double sample = ((double) vcReadBuffer[i * stride + ch * bytesPerSample]);
+                channels[ch][i] = sample;
+            }
+            
+            
+             
+        }
+    }
+
+}
+
+void VcWriteBufferALaw(size_t n_bytes)
+{
+
+}
+
+void VcWriteBufferMuLaw(size_t n_bytes)
 {
     
 }
 
-void VC_WriteBufferALaw(size_t n_bytes)
+void VcWriteBuffer(size_t n_bytes)
 {
-
-}
-
-void VC_WriteBufferMuLaw(size_t n_bytes)
-{
-    
-}
-
-void VC_WriteBuffer(size_t n_bytes)
-{
-    switch (((VC_WaveFormat) vc_ctx.common.wFormatTag))
+    switch (((VcWaveFormat) vcCtx.common.wFormatTag))
     {
         case VC_WAVE_FORMAT_PCM:
         {
-            VC_WriteBufferPCM(n_bytes);
+            VcWriteBufferPCM(n_bytes);
             break;
         }
 
         case VC_WAVE_FORMAT_IEEE_FLOAT:
         {
-            VC_WriteBufferFloat(n_bytes);
+            VcWriteBufferFloat(n_bytes);
             break;
         }
 
         case VC_WAVE_FORMAT_ALAW:
         {
-            VC_WriteBufferALaw(n_bytes);
+            VcWriteBufferALaw(n_bytes);
             break;
         }
 
         case VC_WAVE_FORMAT_MULAW:
         {
-            VC_WriteBufferMuLaw(n_bytes);
+            VcWriteBufferMuLaw(n_bytes);
             break;
         }
 
@@ -186,16 +270,21 @@ void VC_WriteBuffer(size_t n_bytes)
     }
 }
 
-int VcEncode(VcEncodeOptions options)
+GThread *VcGetEncoderThread() 
+{ 
+    return encoderThread; 
+}
+
+int VcEncodeCallback(VcEncodeOptions *options)
 {
-    vc_ctx.pInfile = options.pInFileStream;
-    vc_ctx.pOutfile = options.pOutFileStream;
+    vcCtx.pInfile = options->pInFileStream;
+    vcCtx.pOutfile = options->pOutFileStream;
 
     GError *error = NULL;
 
     int status;
 
-    status = VC_ReadHeader();
+    status = VcReadHeader(options->pLogView);
 
     if (status < 0)
     {
@@ -204,57 +293,57 @@ int VcEncode(VcEncodeOptions options)
     }
 
     srand(time(NULL));
-    status = ogg_stream_init(&vc_ctx.stream, rand());
+    status = ogg_stream_init(&vcCtx.stream, rand());
     if (status < 0)
     {
         g_error("Couldn't initialize vorbis stream");
         return -1;
     }
 
-    vorbis_info_init(&vc_ctx.vi);
-    status = vorbis_encode_init_vbr(&vc_ctx.vi, vc_ctx.common.nChannels, vc_ctx.common.nSamplesPerSec, options.fDesiredQuality);
+    vorbis_info_init(&vcCtx.vi);
+    status = vorbis_encode_init_vbr(&vcCtx.vi, vcCtx.common.nChannels, vcCtx.common.nSamplesPerSec, options->fDesiredQuality);
     if (status < 0)
     {
         g_error("Couldn't initialize vorbis encoding engine");
         return -1;
     }
 
-    status = vorbis_analysis_init(&vc_ctx.dsp, &vc_ctx.vi);
+    status = vorbis_analysis_init(&vcCtx.dsp, &vcCtx.vi);
     if (status < 0)
     {
         g_error("Couldn't initialize vorbis analysis engine");
         return -1;
     }
     
-    vorbis_comment_init(&vc_ctx.comment);
+    vorbis_comment_init(&vcCtx.comment);
     ogg_packet header_packet, comment_packet, code_packet;
-    status = vorbis_analysis_headerout(&vc_ctx.dsp, &vc_ctx.comment, &header_packet, &comment_packet, &code_packet);
+    status = vorbis_analysis_headerout(&vcCtx.dsp, &vcCtx.comment, &header_packet, &comment_packet, &code_packet);
     if (status < 0)
     {
         g_error("Failed to write header");
         return -1;
     }
 
-    status = vorbis_block_init(&vc_ctx.dsp, &vc_ctx.block);
+    status = vorbis_block_init(&vcCtx.dsp, &vcCtx.block);
     if (status < 0)
     {
         g_error("Couldn't initialize vorbis block structure");
         return -1;
     }
 
-    ogg_stream_packetin(&vc_ctx.stream, &header_packet);
-    ogg_stream_packetin(&vc_ctx.stream, &comment_packet);
-    ogg_stream_packetin(&vc_ctx.stream, &code_packet);
+    ogg_stream_packetin(&vcCtx.stream, &header_packet);
+    ogg_stream_packetin(&vcCtx.stream, &comment_packet);
+    ogg_stream_packetin(&vcCtx.stream, &code_packet);
 
     while (true)
     {
-        int result = ogg_stream_flush(&vc_ctx.stream, &vc_ctx.page);
+        int result = ogg_stream_flush(&vcCtx.stream, &vcCtx.page);
         if(result == 0) 
         {
             break;
         }
-        g_output_stream_write(G_OUTPUT_STREAM(vc_ctx.pOutfile), vc_ctx.page.header, vc_ctx.page.header_len, NULL, &error);
-        g_output_stream_write(G_OUTPUT_STREAM(vc_ctx.pOutfile), vc_ctx.page.body, vc_ctx.page.body_len, NULL, &error);
+        g_output_stream_write(G_OUTPUT_STREAM(vcCtx.pOutfile), vcCtx.page.header, vcCtx.page.header_len, NULL, &error);
+        g_output_stream_write(G_OUTPUT_STREAM(vcCtx.pOutfile), vcCtx.page.body, vcCtx.page.body_len, NULL, &error);
         if (error != NULL)
         {
             g_error(error->message);
@@ -266,7 +355,7 @@ int VcEncode(VcEncodeOptions options)
 
     while (!eos)
     {
-        size_t n_bytes =  g_input_stream_read(G_INPUT_STREAM(vc_ctx.pInfile), vc_read_buffer, VC_BUFFER_SIZE, NULL, &error);
+        size_t n_bytes =  g_input_stream_read(G_INPUT_STREAM(vcCtx.pInfile), vcReadBuffer, VC_BUFFER_SIZE, NULL, &error);
         if (error != NULL)
         {
             g_error(error->message);
@@ -275,31 +364,31 @@ int VcEncode(VcEncodeOptions options)
 
         if (n_bytes == 0)
         {
-            vorbis_analysis_wrote(&vc_ctx.dsp, 0);
+            vorbis_analysis_wrote(&vcCtx.dsp, 0);
         }
         else
         {
-            VC_WriteBuffer(n_bytes);
+            VcWriteBuffer(n_bytes);
         }
 
-        while ((status = vorbis_analysis_blockout(&vc_ctx.dsp, &vc_ctx.block)) > 0)
+        while ((status = vorbis_analysis_blockout(&vcCtx.dsp, &vcCtx.block)) > 0)
         {
-            status = vorbis_analysis(&vc_ctx.block, NULL);
+            status = vorbis_analysis(&vcCtx.block, NULL);
             if (status < 0)
             {
                 g_error("Analysis error: %d", status);
                 return -1;
             }
-            status = vorbis_bitrate_addblock(&vc_ctx.block);
+            status = vorbis_bitrate_addblock(&vcCtx.block);
             if (status < 0)
             {
                 g_error("Couldn't add block: %d", status);
                 return -1;
             }
 
-            while ((status = vorbis_bitrate_flushpacket(&vc_ctx.dsp, &vc_ctx.packet)) > 0)
+            while ((status = vorbis_bitrate_flushpacket(&vcCtx.dsp, &vcCtx.packet)) > 0)
             {
-                status = ogg_stream_packetin(&vc_ctx.stream, &vc_ctx.packet);
+                status = ogg_stream_packetin(&vcCtx.stream, &vcCtx.packet);
                 if (status < 0)
                 {
                     g_error("Failed to read packet from stream: %d", status);
@@ -307,21 +396,21 @@ int VcEncode(VcEncodeOptions options)
                 }
                 while (!eos)
                 {
-                    int result = ogg_stream_pageout(&vc_ctx.stream, &vc_ctx.page);
+                    int result = ogg_stream_pageout(&vcCtx.stream, &vcCtx.page);
                     if (result == 0)
                     {
                         break;
                     }
                     
-                    g_output_stream_write(G_OUTPUT_STREAM(vc_ctx.pOutfile), vc_ctx.page.header, vc_ctx.page.header_len, NULL, &error);
-                    g_output_stream_write(G_OUTPUT_STREAM(vc_ctx.pOutfile), vc_ctx.page.body, vc_ctx.page.body_len, NULL, &error);
+                    g_output_stream_write(G_OUTPUT_STREAM(vcCtx.pOutfile), vcCtx.page.header, vcCtx.page.header_len, NULL, &error);
+                    g_output_stream_write(G_OUTPUT_STREAM(vcCtx.pOutfile), vcCtx.page.body, vcCtx.page.body_len, NULL, &error);
                     if (error != NULL)
                     {
                         g_error(error->message);
                         return -1;
                     }
 
-                    if(ogg_page_eos(&vc_ctx.page))
+                    if(ogg_page_eos(&vcCtx.page))
                     {
                         eos = true;
                     }
@@ -342,13 +431,20 @@ int VcEncode(VcEncodeOptions options)
         
     }
 
-    ogg_stream_clear(&vc_ctx.stream);
-    vorbis_block_clear(&vc_ctx.block);
-    vorbis_dsp_clear(&vc_ctx.dsp);
-    vorbis_comment_clear(&vc_ctx.comment);
-    vorbis_info_clear(&vc_ctx.vi);
+    ogg_stream_clear(&vcCtx.stream);
+    vorbis_block_clear(&vcCtx.block);
+    vorbis_dsp_clear(&vcCtx.dsp);
+    vorbis_comment_clear(&vcCtx.comment);
+    vorbis_info_clear(&vcCtx.vi);
 
-    g_input_stream_close(options.pInFileStream, NULL, NULL);
+    g_input_stream_close(options->pInFileStream, NULL, NULL);
+
+    g_main_context_invoke(NULL, options->cbOnFinished, options);
     
     return 0;
+}
+
+GThread *VcEncode(VcEncodeOptions *options)
+{
+    return encoderThread = g_thread_new("encoder", VcEncodeCallback, options);
 }

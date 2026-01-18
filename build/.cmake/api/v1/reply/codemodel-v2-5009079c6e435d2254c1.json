@@ -22,7 +22,7 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						45
+						43
 					]
 				},
 				{
@@ -38,9 +38,7 @@
 					"source" : "build/_deps/ogg-src",
 					"targetIndexes" : 
 					[
-						34,
-						40,
-						41
+						34
 					]
 				},
 				{
@@ -94,7 +92,7 @@
 				{
 					"build" : "_deps/vorbis-build/lib",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-_deps.vorbis-build.lib-Debug-7f8e5979d466559d8827.json",
+					"jsonFile" : "directory-_deps.vorbis-build.lib-Debug-a5beb72ed0915a9be318.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.6"
@@ -104,9 +102,9 @@
 					"source" : "build/_deps/vorbis-src/lib",
 					"targetIndexes" : 
 					[
-						44,
-						47,
-						48
+						42,
+						45,
+						46
 					]
 				},
 				{
@@ -121,7 +119,7 @@
 					"source" : "build/_deps/vorbis-src/test",
 					"targetIndexes" : 
 					[
-						46
+						44
 					]
 				},
 				{
@@ -148,8 +146,8 @@
 						37,
 						38,
 						39,
-						42,
-						43
+						40,
+						41
 					]
 				}
 			],
@@ -170,7 +168,7 @@
 					"name" : "vorbis-compression",
 					"targetIndexes" : 
 					[
-						45
+						43
 					]
 				},
 				{
@@ -182,9 +180,7 @@
 					"parentIndex" : 0,
 					"targetIndexes" : 
 					[
-						34,
-						40,
-						41
+						34
 					]
 				},
 				{
@@ -226,10 +222,10 @@
 						25,
 						26,
 						27,
+						42,
 						44,
-						46,
-						47,
-						48
+						45,
+						46
 					]
 				},
 				{
@@ -252,8 +248,8 @@
 						37,
 						38,
 						39,
-						42,
-						43
+						40,
+						41
 					]
 				}
 			],
@@ -458,7 +454,7 @@
 				{
 					"directoryIndex" : 5,
 					"id" : "backend_disconnect_recover::@bfb69c373aeb117f7cea",
-					"jsonFile" : "target-backend_disconnect_recover-Debug-bea26dab2f8f8f71bcf9.json",
+					"jsonFile" : "target-backend_disconnect_recover-Debug-f91d21cb16ed54214d86.json",
 					"name" : "backend_disconnect_recover",
 					"projectIndex" : 3
 				},
@@ -479,126 +475,112 @@
 				{
 					"directoryIndex" : 5,
 					"id" : "latency::@bfb69c373aeb117f7cea",
-					"jsonFile" : "target-latency-Debug-39efbfd6ea078c3f0573.json",
+					"jsonFile" : "target-latency-Debug-5f6266e1a51330bed324.json",
 					"name" : "latency",
 					"projectIndex" : 3
 				},
 				{
 					"directoryIndex" : 5,
 					"id" : "libsoundio_shared::@bfb69c373aeb117f7cea",
-					"jsonFile" : "target-libsoundio_shared-Debug-707d3f563f9ffb67c6cc.json",
+					"jsonFile" : "target-libsoundio_shared-Debug-6ac81ef6c9e2d37c48f6.json",
 					"name" : "libsoundio_shared",
 					"projectIndex" : 3
 				},
 				{
 					"directoryIndex" : 5,
 					"id" : "libsoundio_static::@bfb69c373aeb117f7cea",
-					"jsonFile" : "target-libsoundio_static-Debug-81268406ca67dd3dbd69.json",
+					"jsonFile" : "target-libsoundio_static-Debug-7f932f504b1dff5f13d3.json",
 					"name" : "libsoundio_static",
 					"projectIndex" : 3
 				},
 				{
 					"directoryIndex" : 1,
 					"id" : "ogg::@4e5ed7d02827854e35f8",
-					"jsonFile" : "target-ogg-Debug-890d68c330a0dc2b60d8.json",
+					"jsonFile" : "target-ogg-Debug-e88df34573fbb8a3d349.json",
 					"name" : "ogg",
 					"projectIndex" : 1
 				},
 				{
 					"directoryIndex" : 5,
 					"id" : "overflow::@bfb69c373aeb117f7cea",
-					"jsonFile" : "target-overflow-Debug-53e5c4bc71fc8ceed977.json",
+					"jsonFile" : "target-overflow-Debug-870dea0766fef1683178.json",
 					"name" : "overflow",
 					"projectIndex" : 3
 				},
 				{
 					"directoryIndex" : 5,
 					"id" : "sio_list_devices::@bfb69c373aeb117f7cea",
-					"jsonFile" : "target-sio_list_devices-Debug-f9cd79c7d65d17e40897.json",
+					"jsonFile" : "target-sio_list_devices-Debug-0e64029a724f16ec82a8.json",
 					"name" : "sio_list_devices",
 					"projectIndex" : 3
 				},
 				{
 					"directoryIndex" : 5,
 					"id" : "sio_microphone::@bfb69c373aeb117f7cea",
-					"jsonFile" : "target-sio_microphone-Debug-1d769e5501134a56b2f7.json",
+					"jsonFile" : "target-sio_microphone-Debug-d09cef400795e7c76a81.json",
 					"name" : "sio_microphone",
 					"projectIndex" : 3
 				},
 				{
 					"directoryIndex" : 5,
 					"id" : "sio_record::@bfb69c373aeb117f7cea",
-					"jsonFile" : "target-sio_record-Debug-5a019fb61bcdb6271bae.json",
+					"jsonFile" : "target-sio_record-Debug-8da03534fa7443e82333.json",
 					"name" : "sio_record",
 					"projectIndex" : 3
 				},
 				{
 					"directoryIndex" : 5,
 					"id" : "sio_sine::@bfb69c373aeb117f7cea",
-					"jsonFile" : "target-sio_sine-Debug-3ef1c50906382495188d.json",
+					"jsonFile" : "target-sio_sine-Debug-8fb9f26787fa740f850d.json",
 					"name" : "sio_sine",
 					"projectIndex" : 3
 				},
 				{
-					"directoryIndex" : 1,
-					"id" : "test_bitwise::@4e5ed7d02827854e35f8",
-					"jsonFile" : "target-test_bitwise-Debug-56a557ecee14c327865d.json",
-					"name" : "test_bitwise",
-					"projectIndex" : 1
-				},
-				{
-					"directoryIndex" : 1,
-					"id" : "test_framing::@4e5ed7d02827854e35f8",
-					"jsonFile" : "target-test_framing-Debug-dd9c490510da4916c724.json",
-					"name" : "test_framing",
-					"projectIndex" : 1
-				},
-				{
 					"directoryIndex" : 5,
 					"id" : "underflow::@bfb69c373aeb117f7cea",
-					"jsonFile" : "target-underflow-Debug-b2a039d579ef6ba91cb3.json",
+					"jsonFile" : "target-underflow-Debug-a6232d4b6117877ebc3a.json",
 					"name" : "underflow",
 					"projectIndex" : 3
 				},
 				{
 					"directoryIndex" : 5,
 					"id" : "unit_tests::@bfb69c373aeb117f7cea",
-					"jsonFile" : "target-unit_tests-Debug-ebf568ce31e6c2204c04.json",
+					"jsonFile" : "target-unit_tests-Debug-de69dc75a06bc76915cd.json",
 					"name" : "unit_tests",
 					"projectIndex" : 3
 				},
 				{
 					"directoryIndex" : 3,
 					"id" : "vorbis::@692b0ee2b61df6760d20",
-					"jsonFile" : "target-vorbis-Debug-2b7527d6fa54235703d0.json",
+					"jsonFile" : "target-vorbis-Debug-9b1ef965cf0b3a3194ca.json",
 					"name" : "vorbis",
 					"projectIndex" : 2
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "vorbis-compression::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-vorbis-compression-Debug-1dab8b5ae3b5fd00c05c.json",
+					"jsonFile" : "target-vorbis-compression-Debug-9cddcee7cdf953a4c79c.json",
 					"name" : "vorbis-compression",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 4,
 					"id" : "vorbis_test::@2a51e7dd1140f7cd837d",
-					"jsonFile" : "target-vorbis_test-Debug-e9a66ba5943813b362ee.json",
+					"jsonFile" : "target-vorbis_test-Debug-8a5ca7430d5a712f0a65.json",
 					"name" : "vorbis_test",
 					"projectIndex" : 2
 				},
 				{
 					"directoryIndex" : 3,
 					"id" : "vorbisenc::@692b0ee2b61df6760d20",
-					"jsonFile" : "target-vorbisenc-Debug-44dc480f29e9c836eecb.json",
+					"jsonFile" : "target-vorbisenc-Debug-b61909abaedebb56c098.json",
 					"name" : "vorbisenc",
 					"projectIndex" : 2
 				},
 				{
 					"directoryIndex" : 3,
 					"id" : "vorbisfile::@692b0ee2b61df6760d20",
-					"jsonFile" : "target-vorbisfile-Debug-d0096bd7d27224f925dc.json",
+					"jsonFile" : "target-vorbisfile-Debug-72653e53749a02ada0ce.json",
 					"name" : "vorbisfile",
 					"projectIndex" : 2
 				}
@@ -608,8 +590,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/uros/dev/vorbis-compression/build",
-		"source" : "/home/uros/dev/vorbis-compression"
+		"build" : "/home/uros/projects/vorbis-compression/build",
+		"source" : "/home/uros/projects/vorbis-compression"
 	},
 	"version" : 
 	{

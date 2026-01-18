@@ -7,6 +7,7 @@
 
 #define VC_BUFFER_SIZE 3072
 
-int VcEncode(VcEncodeOptions options);
+GThread *VcEncode(VcEncodeOptions *options);
+GThread *VcGetEncoderThread();
 
 #endif //VC_ENCODING_H

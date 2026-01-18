@@ -52,19 +52,19 @@
 			[
 				{
 					"backtrace" : 2,
-					"path" : "/home/uros/dev/vorbis-compression/build/_deps/soundio-src"
+					"path" : "/home/uros/projects/vorbis-compression/build/_deps/soundio-src"
 				},
 				{
 					"backtrace" : 2,
-					"path" : "/home/uros/dev/vorbis-compression/build/_deps/soundio-build"
+					"path" : "/home/uros/projects/vorbis-compression/build/_deps/soundio-build"
 				},
 				{
 					"backtrace" : 2,
-					"path" : "/home/uros/dev/vorbis-compression/build/_deps/soundio-src/test"
+					"path" : "/home/uros/projects/vorbis-compression/build/_deps/soundio-src/test"
 				},
 				{
 					"backtrace" : 2,
-					"path" : "/home/uros/dev/vorbis-compression/build/_deps/soundio-src/src"
+					"path" : "/home/uros/projects/vorbis-compression/build/_deps/soundio-src/src"
 				}
 			],
 			"language" : "C",

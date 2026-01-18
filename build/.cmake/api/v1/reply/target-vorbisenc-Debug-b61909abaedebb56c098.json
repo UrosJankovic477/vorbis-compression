@@ -3,7 +3,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "_deps/vorbis-build/lib/libvorbisfile.a"
+			"path" : "_deps/vorbis-build/lib/libvorbisenc.a"
 		}
 	],
 	"backtrace" : 1,
@@ -28,7 +28,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 79,
+				"line" : 78,
 				"parent" : 0
 			},
 			{
@@ -40,13 +40,13 @@
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 117,
+				"line" : 116,
 				"parent" : 0
 			},
 			{
 				"command" : 3,
 				"file" : 0,
-				"line" : 106,
+				"line" : 99,
 				"parent" : 0
 			}
 		]
@@ -64,15 +64,19 @@
 			[
 				{
 					"backtrace" : 4,
-					"path" : "/home/uros/dev/vorbis-compression/build/_deps/vorbis-src/include"
+					"path" : "/home/uros/projects/vorbis-compression/build/_deps/vorbis-src/include"
+				},
+				{
+					"backtrace" : 4,
+					"path" : "/home/uros/projects/vorbis-compression/build/_deps/vorbis-src/lib"
 				},
 				{
 					"backtrace" : 3,
-					"path" : "/home/uros/dev/vorbis-compression/build/_deps/ogg-src/include"
+					"path" : "/home/uros/projects/vorbis-compression/build/_deps/ogg-src/include"
 				},
 				{
 					"backtrace" : 3,
-					"path" : "/home/uros/dev/vorbis-compression/build/_deps/ogg-build/include"
+					"path" : "/home/uros/projects/vorbis-compression/build/_deps/ogg-build/include"
 				}
 			],
 			"language" : "C",
@@ -93,7 +97,7 @@
 			"id" : "vorbis::@692b0ee2b61df6760d20"
 		}
 	],
-	"id" : "vorbisfile::@692b0ee2b61df6760d20",
+	"id" : "vorbisenc::@692b0ee2b61df6760d20",
 	"install" : 
 	{
 		"destinations" : 
@@ -108,8 +112,8 @@
 			"path" : "/usr/local"
 		}
 	},
-	"name" : "vorbisfile",
-	"nameOnDisk" : "libvorbisfile.a",
+	"name" : "vorbisenc",
+	"nameOnDisk" : "libvorbisenc.a",
 	"paths" : 
 	{
 		"build" : "_deps/vorbis-build/lib",
@@ -130,7 +134,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "build/_deps/vorbis-src/lib/vorbisfile.c",
+			"path" : "build/_deps/vorbis-src/lib/vorbisenc.c",
 			"sourceGroupIndex" : 0
 		}
 	],
