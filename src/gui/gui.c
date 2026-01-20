@@ -75,9 +75,9 @@ void VcOnEncodeFinished(gpointer data)
         gtk_widget_set_visible(GTK_WIDGET(outputFileLabel), true);
     }
 
-    gtk_spinner_stop(GTK_SPINNER(spinner));
-    
     g_log(G_LOG_DOMAIN, G_LOG_LEVEL_INFO, "File encoded successfully.");
+
+    gtk_spinner_stop(GTK_SPINNER(spinner));
 
     gtk_widget_set_sensitive(convertButton, true);
     gtk_widget_set_sensitive(chooseFileButton, true);
@@ -156,6 +156,10 @@ void VcOnOutputFileDialogFinished(GObject *fileDialog, GAsyncResult *res, gpoint
     outFile = gtk_file_dialog_save_finish(GTK_FILE_DIALOG(fileDialog), res, &error);
     if (error != NULL)
     {
+        gtk_spinner_stop(GTK_SPINNER(spinner));
+
+        gtk_widget_set_sensitive(convertButton, true);
+        gtk_widget_set_sensitive(chooseFileButton, true);
         g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, error->message);
         g_error_free(error);
         return;
