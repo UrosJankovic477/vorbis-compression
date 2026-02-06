@@ -19,8 +19,7 @@
 		],
 		"files" : 
 		[
-			"CMakeLists.txt",
-			"build/_deps/vorbis-src/lib/CMakeLists.txt"
+			"CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -30,46 +29,37 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 73,
+				"line" : 49,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 70,
+				"line" : 46,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 74,
+				"line" : 50,
 				"parent" : 0
-			},
-			{
-				"file" : 1
-			},
-			{
-				"command" : 2,
-				"file" : 1,
-				"line" : 112,
-				"parent" : 4
 			},
 			{
 				"command" : 3,
 				"file" : 0,
-				"line" : 72,
+				"line" : 48,
 				"parent" : 0
 			},
 			{
 				"command" : 4,
 				"file" : 0,
-				"line" : 71,
+				"line" : 47,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 0,
-				"line" : 69,
+				"line" : 45,
 				"parent" : 0
 			}
 		]
@@ -80,125 +70,109 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g"
+					"fragment" : "-O3 -DNDEBUG"
 				},
 				{
-					"backtrace" : 6,
+					"backtrace" : 4,
 					"fragment" : "-Wall"
 				},
 				{
-					"backtrace" : 6,
+					"backtrace" : 4,
 					"fragment" : "-O3"
 				},
 				{
-					"backtrace" : 6,
+					"backtrace" : 4,
 					"fragment" : "-mfpmath=sse"
 				},
 				{
-					"backtrace" : 6,
+					"backtrace" : 4,
 					"fragment" : "-msse"
 				},
 				{
-					"backtrace" : 6,
+					"backtrace" : 4,
 					"fragment" : "-msse2"
 				},
 				{
-					"backtrace" : 6,
+					"backtrace" : 4,
 					"fragment" : "-pthread"
-				},
-				{
-					"backtrace" : 6,
-					"fragment" : "-ggdb"
 				}
 			],
 			"defines" : 
 			[
 				{
-					"backtrace" : 7,
+					"backtrace" : 5,
 					"define" : "_USE_MATH_DEFINES"
 				}
 			],
 			"includes" : 
 			[
 				{
-					"backtrace" : 8,
+					"backtrace" : 6,
 					"path" : "/home/uros/projects/vorbis-compression/include"
 				},
 				{
-					"backtrace" : 8,
+					"backtrace" : 6,
 					"path" : "/usr/include/gtk-4.0"
 				},
 				{
-					"backtrace" : 8,
+					"backtrace" : 6,
 					"path" : "/usr/include/pango-1.0"
 				},
 				{
-					"backtrace" : 8,
+					"backtrace" : 6,
 					"path" : "/usr/include/glib-2.0"
 				},
 				{
-					"backtrace" : 8,
+					"backtrace" : 6,
 					"path" : "/usr/lib/x86_64-linux-gnu/glib-2.0/include"
 				},
 				{
-					"backtrace" : 8,
+					"backtrace" : 6,
 					"path" : "/usr/include/harfbuzz"
 				},
 				{
-					"backtrace" : 8,
+					"backtrace" : 6,
 					"path" : "/usr/include/freetype2"
 				},
 				{
-					"backtrace" : 8,
+					"backtrace" : 6,
 					"path" : "/usr/include/libpng16"
 				},
 				{
-					"backtrace" : 8,
+					"backtrace" : 6,
 					"path" : "/usr/include/libmount"
 				},
 				{
-					"backtrace" : 8,
+					"backtrace" : 6,
 					"path" : "/usr/include/blkid"
 				},
 				{
-					"backtrace" : 8,
+					"backtrace" : 6,
 					"path" : "/usr/include/fribidi"
 				},
 				{
-					"backtrace" : 8,
+					"backtrace" : 6,
 					"path" : "/usr/include/cairo"
 				},
 				{
-					"backtrace" : 8,
+					"backtrace" : 6,
 					"path" : "/usr/include/pixman-1"
 				},
 				{
-					"backtrace" : 8,
+					"backtrace" : 6,
 					"path" : "/usr/include/gdk-pixbuf-2.0"
 				},
 				{
-					"backtrace" : 8,
+					"backtrace" : 6,
 					"path" : "/usr/include/webp"
 				},
 				{
-					"backtrace" : 8,
+					"backtrace" : 6,
 					"path" : "/usr/include/graphene-1.0"
 				},
 				{
-					"backtrace" : 8,
+					"backtrace" : 6,
 					"path" : "/usr/lib/x86_64-linux-gnu/graphene-1.0/include"
-				},
-				{
-					"backtrace" : 3,
-					"path" : "/home/uros/projects/vorbis-compression/build/_deps/ogg-src/include"
-				},
-				{
-					"backtrace" : 3,
-					"path" : "/home/uros/projects/vorbis-compression/build/_deps/ogg-build/include"
-				},
-				{
-					"backtrace" : 3,
-					"path" : "/home/uros/projects/vorbis-compression/build/_deps/vorbis-src/include"
 				}
 			],
 			"language" : "C",
@@ -212,32 +186,13 @@
 			]
 		}
 	],
-	"dependencies" : 
-	[
-		{
-			"backtrace" : 3,
-			"id" : "ogg::@4e5ed7d02827854e35f8"
-		},
-		{
-			"backtrace" : 3,
-			"id" : "vorbis::@692b0ee2b61df6760d20"
-		},
-		{
-			"backtrace" : 3,
-			"id" : "vorbisenc::@692b0ee2b61df6760d20"
-		},
-		{
-			"backtrace" : 3,
-			"id" : "vorbisfile::@692b0ee2b61df6760d20"
-		}
-	],
 	"id" : "vorbis-compression::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "-g",
+				"fragment" : "-O3 -DNDEBUG",
 				"role" : "flags"
 			},
 			{
@@ -260,22 +215,22 @@
 			},
 			{
 				"backtrace" : 3,
-				"fragment" : "_deps/ogg-build/libogg.a",
+				"fragment" : "-logg",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 3,
-				"fragment" : "_deps/vorbis-build/lib/libvorbis.a",
+				"fragment" : "-lvorbis",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 3,
-				"fragment" : "_deps/vorbis-build/lib/libvorbisfile.a",
+				"fragment" : "-lvorbisfile",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 3,
-				"fragment" : "_deps/vorbis-build/lib/libvorbisenc.a",
+				"fragment" : "-lvorbisenc",
 				"role" : "libraries"
 			},
 			{
@@ -336,21 +291,6 @@
 			{
 				"backtrace" : 3,
 				"fragment" : "-lglib-2.0",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 3,
-				"fragment" : "_deps/vorbis-build/lib/libvorbis.a",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 3,
-				"fragment" : "_deps/ogg-build/libogg.a",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 5,
-				"fragment" : "-lm",
 				"role" : "libraries"
 			}
 		],

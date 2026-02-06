@@ -68,7 +68,7 @@ int VcReadHeader(GtkTextView *logView)
     g_seekable_seek(G_SEEKABLE(vcCtx.pInfile), 20, G_SEEK_SET, NULL, &error);
     if (error != NULL)
     {
-        g_error(error->message);
+        g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, error->message);
         VcLogViewWriteLine(logView, error->message);
         return -1;
     }
@@ -78,13 +78,13 @@ int VcReadHeader(GtkTextView *logView)
     {
         if (error)
         {
-            g_error(error->message);
+            g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, error->message);
             VcLogViewWriteLine(logView, error->message);
         }
 
         else
         {
-            g_error("Failed to read header");
+            g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, "Failed to read header");
             VcLogViewWriteLine(logView, "Failed to read header");
         }
         
@@ -99,7 +99,7 @@ int VcReadHeader(GtkTextView *logView)
         nBytes = g_input_stream_read(G_INPUT_STREAM(vcCtx.pInfile), &subFormat, 16, NULL, &error);
         if (error != NULL)
         {
-            g_error(error->message);
+            g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, error->message);
             VcLogViewWriteLine(logView, error->message);
             return -1;
         }
@@ -122,7 +122,7 @@ int VcReadHeader(GtkTextView *logView)
     
     if (error != NULL)
     {
-        g_error(error->message);
+        g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, error->message);
         VcLogViewWriteLine(logView, error->message);
         return -1;
     }
@@ -130,7 +130,7 @@ int VcReadHeader(GtkTextView *logView)
     nBytes = g_input_stream_read(G_INPUT_STREAM(vcCtx.pInfile), &vcCtx.nDataSize, 4, NULL, &error);
     if (nBytes < 4)
     {
-        g_error(error->message);
+        g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, error->message);
         VcLogViewWriteLine(logView, error->message);
         return -1;
     }
@@ -270,6 +270,19 @@ void VcWriteBuffer(size_t n_bytes)
     }
 }
 
+void VcEncoderFinalize(VcEncodeOptions *options)
+{
+    ogg_stream_clear(&vcCtx.stream);
+    vorbis_block_clear(&vcCtx.block);
+    vorbis_dsp_clear(&vcCtx.dsp);
+    vorbis_comment_clear(&vcCtx.comment);
+    vorbis_info_clear(&vcCtx.vi);
+
+    g_input_stream_close(options->pInFileStream, NULL, NULL);
+
+    g_main_context_invoke(NULL, options->cbOnFinished, options);
+}
+
 GThread *VcGetEncoderThread() 
 { 
     return encoderThread; 
@@ -288,7 +301,8 @@ int VcEncodeCallback(VcEncodeOptions *options)
 
     if (status < 0)
     {
-        g_error("Failed to parse header");
+        g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, "Failed to parse header");
+        VcEncoderFinalize(options);
         return -1;
     }
 
@@ -296,7 +310,8 @@ int VcEncodeCallback(VcEncodeOptions *options)
     status = ogg_stream_init(&vcCtx.stream, rand());
     if (status < 0)
     {
-        g_error("Couldn't initialize vorbis stream");
+        g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, "Couldn't initialize vorbis stream");
+        VcEncoderFinalize(options);
         return -1;
     }
 
@@ -304,14 +319,16 @@ int VcEncodeCallback(VcEncodeOptions *options)
     status = vorbis_encode_init_vbr(&vcCtx.vi, vcCtx.common.nChannels, vcCtx.common.nSamplesPerSec, options->fDesiredQuality);
     if (status < 0)
     {
-        g_error("Couldn't initialize vorbis encoding engine");
+        g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, "Couldn't initialize vorbis encoding engine");
+        VcEncoderFinalize(options);
         return -1;
     }
 
     status = vorbis_analysis_init(&vcCtx.dsp, &vcCtx.vi);
     if (status < 0)
     {
-        g_error("Couldn't initialize vorbis analysis engine");
+        g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, "Couldn't initialize vorbis analysis engine");
+        VcEncoderFinalize(options);
         return -1;
     }
     
@@ -320,14 +337,16 @@ int VcEncodeCallback(VcEncodeOptions *options)
     status = vorbis_analysis_headerout(&vcCtx.dsp, &vcCtx.comment, &header_packet, &comment_packet, &code_packet);
     if (status < 0)
     {
-        g_error("Failed to write header");
+        g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, "Failed to write header");
+        VcEncoderFinalize(options);
         return -1;
     }
 
     status = vorbis_block_init(&vcCtx.dsp, &vcCtx.block);
     if (status < 0)
     {
-        g_error("Couldn't initialize vorbis block structure");
+        g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, "Couldn't initialize vorbis block structure");
+        VcEncoderFinalize(options);
         return -1;
     }
 
@@ -346,7 +365,8 @@ int VcEncodeCallback(VcEncodeOptions *options)
         g_output_stream_write(G_OUTPUT_STREAM(vcCtx.pOutfile), vcCtx.page.body, vcCtx.page.body_len, NULL, &error);
         if (error != NULL)
         {
-            g_error(error->message);
+            g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, error->message);
+            VcEncoderFinalize(options);
             return -1;
         }
     }
@@ -358,7 +378,8 @@ int VcEncodeCallback(VcEncodeOptions *options)
         size_t n_bytes =  g_input_stream_read(G_INPUT_STREAM(vcCtx.pInfile), vcReadBuffer, VC_BUFFER_SIZE, NULL, &error);
         if (error != NULL)
         {
-            g_error(error->message);
+            g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, error->message);
+            VcEncoderFinalize(options);
             return -1;
         }
 
@@ -376,13 +397,15 @@ int VcEncodeCallback(VcEncodeOptions *options)
             status = vorbis_analysis(&vcCtx.block, NULL);
             if (status < 0)
             {
-                g_error("Analysis error: %d", status);
+                g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, "Analysis error: %d", status);
+                VcEncoderFinalize(options);
                 return -1;
             }
             status = vorbis_bitrate_addblock(&vcCtx.block);
             if (status < 0)
             {
-                g_error("Couldn't add block: %d", status);
+                g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, "Couldn't add block: %d", status);
+                VcEncoderFinalize(options);
                 return -1;
             }
 
@@ -391,7 +414,8 @@ int VcEncodeCallback(VcEncodeOptions *options)
                 status = ogg_stream_packetin(&vcCtx.stream, &vcCtx.packet);
                 if (status < 0)
                 {
-                    g_error("Failed to read packet from stream: %d", status);
+                    g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, "Failed to read packet from stream: %d", status);
+                    VcEncoderFinalize(options);
                     return -1;
                 }
                 while (!eos)
@@ -406,7 +430,8 @@ int VcEncodeCallback(VcEncodeOptions *options)
                     g_output_stream_write(G_OUTPUT_STREAM(vcCtx.pOutfile), vcCtx.page.body, vcCtx.page.body_len, NULL, &error);
                     if (error != NULL)
                     {
-                        g_error(error->message);
+                        g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, error->message);
+                        VcEncoderFinalize(options);
                         return -1;
                     }
 
@@ -418,28 +443,22 @@ int VcEncodeCallback(VcEncodeOptions *options)
             }
             if (status < 0)
             {
-                g_error("Failed to flush packet: %d", status);
+                g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, "Failed to flush packet: %d", status);
+                VcEncoderFinalize(options);
                 return -1;
             }
 
         }
         if (status < 0)
         {
-            g_error("Couldn't write block: %d", status);
+            g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, "Couldn't write block: %d", status);
+            VcEncoderFinalize(options);
             return -1;
         }
         
     }
 
-    ogg_stream_clear(&vcCtx.stream);
-    vorbis_block_clear(&vcCtx.block);
-    vorbis_dsp_clear(&vcCtx.dsp);
-    vorbis_comment_clear(&vcCtx.comment);
-    vorbis_info_clear(&vcCtx.vi);
-
-    g_input_stream_close(options->pInFileStream, NULL, NULL);
-
-    g_main_context_invoke(NULL, options->cbOnFinished, options);
+    VcEncoderFinalize(options);
     
     return 0;
 }

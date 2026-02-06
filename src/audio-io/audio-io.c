@@ -88,7 +88,7 @@ static void VcAudioIoWriteCallback
 
         if ((error = soundio_outstream_begin_write(outstream, &areas, &frameCount))) 
         {
-            g_error(soundio_strerror(error));
+            g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, soundio_strerror(error));
             return;
         }
 
@@ -124,7 +124,7 @@ static void VcAudioIoWriteCallback
         
         if ((error = soundio_outstream_end_write(outstream))) 
         {
-            g_error(soundio_strerror(error));
+            g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, soundio_strerror(error));
             return;
         }
         
@@ -140,12 +140,12 @@ gpointer VcInitAudioIoCallback(gpointer data)
     vorbis_info *info = (vorbis_info *)data;
     struct SoundIo *soundio = soundio_create();
     if (!soundio) {
-        g_error("failed to create sound io sturct");
+        g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, "failed to create sound io sturct");
         return NULL;
     }
 
     if ((error = soundio_connect(soundio))) {
-        g_error(soundio_strerror(error));
+        g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, soundio_strerror(error));
         return NULL;
     }
 
@@ -153,13 +153,13 @@ gpointer VcInitAudioIoCallback(gpointer data)
 
     int default_out_device_index = soundio_default_output_device_index(soundio);
     if (default_out_device_index < 0) {
-        g_error("no output device found");
+        g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, "no output device found");
         return NULL;
     }
 
     struct SoundIoDevice *device = soundio_get_output_device(soundio, default_out_device_index);
     if (!device) {
-        g_error("couldn't get output device");
+        g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, "couldn't get output device");
         return NULL;
     }
 
@@ -174,13 +174,13 @@ gpointer VcInitAudioIoCallback(gpointer data)
 
     if ((error = soundio_outstream_open(outstream))) 
     {
-        g_error(soundio_strerror(error));
+        g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, soundio_strerror(error));
         return NULL;
     }
 
     if (outstream->layout_error)
     {
-        g_error(soundio_strerror(outstream->layout_error));
+        g_log(G_LOG_DOMAIN, G_LOG_LEVEL_WARNING, soundio_strerror(outstream->layout_error));
         return NULL;
     }
 

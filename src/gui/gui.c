@@ -29,6 +29,7 @@ void VcOnEncodeFinished(gpointer data)
     if (status < 0)
     {
         VcLogViewWriteLine(GTK_TEXT_VIEW(logView), "Encription failed!");
+        gtk_spinner_stop(GTK_SPINNER(spinner));
         gtk_widget_set_sensitive(convertButton, true);
         gtk_widget_set_sensitive(chooseFileButton, true);
         return;
@@ -264,11 +265,13 @@ void VcOnActivate(GtkApplication *app)
     GtkWidget   *mainBox        = gtk_box_new(GTK_ORIENTATION_VERTICAL, 4);
     GtkWidget   *controlsBox    = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
     GtkWidget   *grid           = gtk_grid_new();
+    GtkWidget   *scrolledWindow = gtk_scrolled_window_new();
     GtkWidget   *clearLogButton = gtk_button_new_with_label("Clear Log");
     GtkWidget   *copyLogButton  = gtk_button_new_from_icon_name("edit-copy");
 
     gtk_text_view_set_editable(logView, false);
 
+    gtk_scrolled_window_set_child(GTK_SCROLLED_WINDOW(scrolledWindow), logView);
     gtk_widget_set_hexpand(copyLogButton, false);
     gtk_widget_set_halign(copyLogButton, GTK_ALIGN_START);
     gtk_widget_set_margin_top(copyLogButton, 20);
@@ -298,7 +301,7 @@ void VcOnActivate(GtkApplication *app)
     gtk_box_append(GTK_BOX(controlsBox), playbackButton);
     gtk_box_append(GTK_BOX(controlsBox), stopButton);
     gtk_box_append(GTK_BOX(mainBox), copyLogButton);
-    gtk_box_append(GTK_BOX(mainBox), logView);
+    gtk_box_append(GTK_BOX(mainBox), scrolledWindow);
     gtk_box_append(GTK_BOX(mainBox), clearLogButton);
 
     gtk_widget_set_margin_top(logView, 10);
